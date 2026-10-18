@@ -1,8 +1,8 @@
 # Principle: Solution-first commercial
 
 **Company:** Catalpa Automations (Ghana)  
-**Companion:** [`docs/catalpa-foundation.md`](../docs/catalpa-foundation.md)  
-**Not legal advice** — contracts need a Ghana lawyer review.
+**Companion:** [`docs/catalpa-foundation.md`](./catalpa-foundation.md)  
+**Client rules:** [`docs/catalpa-terms.md`](./catalpa-terms.md) — Terms + written agreement for pilots and paid plans.
 
 ## When it applies
 

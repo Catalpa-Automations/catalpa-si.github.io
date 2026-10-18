@@ -1,7 +1,6 @@
 # Catalpa Automations — Scope Boundary (One-Pager)
 
-> **Have a Ghana lawyer review before use.**  
-> Checklist to stop scope creep and “we thought it was included” fights. **Not** formal legal advice.
+Checklist to stop scope creep and “we thought it was included” fights. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 
 ---
 
@@ -50,7 +49,7 @@ These are **not** included in the standard pilot or SaaS spine. Asking for them 
 | **Guaranteed** ad ROAS, sales, or bank loan outcomes | Nobody honest can promise this |
 | 24/7 human call-centre staffing by Catalpa | Bot ≠ full contact centre unless quoted |
 | Migrating years of old chats from personal phones without limits | Agree volume first |
-| Legal / tax / licensing filings for Client’s business | Client’s lawyer / accountant |
+| Legal / tax / licensing filings for Client’s business | Client’s own accountant for tax filings; Client handles own licensing |
 | Buying stock, delivering parcels, or collecting cash in the street | Client’s operations |
 | Paying Meta invoices or ad spend from Catalpa’s pocket | Client’s billing |
 
