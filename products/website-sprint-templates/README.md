@@ -101,5 +101,16 @@ Deploy: drag the single HTML to Netlify Drop, or `npx serve` for local preview.
 
 ## Repo target
 
-Canonical home: **https://github.com/Catalpa-Automations** (new repo, e.g. `ghana-website-sprint-templates`).  
-Until org push credentials are available, this pack lives in the Project store under `internal/builds/website-sprint-templates/`.
+Canonical home: **https://github.com/Catalpa-Automations/ghana-website-sprint-templates** (new repo OK).
+
+### Push to Catalpa-Automations (when you have org auth)
+
+```bash
+cd internal/builds/website-sprint-templates   # or this folder
+gh auth status   # must see Catalpa-Automations access
+gh repo create Catalpa-Automations/ghana-website-sprint-templates \
+  --private --source=. --remote=origin --push \
+  --description "Ghana GBP + Website Sprint — complementary SME sites on Maps + WhatsApp + MoMo"
+```
+
+Until `GH_TOKEN` / org access is available, the pack stays in the Project store (see `../website-sprint-templates-catalpa-handoff.md`).
