@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order · MoMo Checkout</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <p class="eyebrow">Order status</p>
+        <h1 id="title">Checking payment…</h1>
+        <p class="tagline" id="subtitle"></p>
+      </header>
+
+      <div class="panel" id="panel">
+        <p>Loading…</p>
+      </div>
+
+      <footer>
+        <a href="/">Continue shopping</a> ·
+        <a href="/orders.html">Seller board</a>
+      </footer>
+    </div>
+    <script>
+      const orderId = new URLSearchParams(location.search).get("id");
+      const ref = new URLSearchParams(location.search).get("reference");
+      const panel = document.getElementById("panel");
+
+      async function refresh() {
+        if (!orderId) {
+          panel.innerHTML = `<p class="error">Missing order id</p>`;
+          return;
+        }
+
+        // If Paystack redirected with ?reference=, verify once
+        if (ref) {
+          try {
+            await fetch(`/api/verify/${encodeURIComponent(ref)}`);
+          } catch (_) {}
+        }
+
+        const res = await fetch(`/api/orders/${orderId}`);
+        const data = await res.json();
+        if (!res.ok) {
+          panel.innerHTML = `<p class="error">${data.error}</p>`;
+          return;
+        }
+
+        const o = data.order;
+        const paid = o.status === "paid";
+        document.getElementById("title").textContent = paid
+          ? "Payment confirmed"
+          : "Awaiting payment";
+        document.getElementById("subtitle").textContent = paid
+          ? "Share the WhatsApp confirmation with your buyer (or seller)."
+          : "Complete Paystack checkout, then refresh this page.";
+
+        let wa = {};
+        try {
+          wa = JSON.parse(sessionStorage.getItem(`wa_${orderId}`) || "{}");
+        } catch (_) {}
+
+        const waBlock =
+          wa.sellerNotifyUrl || wa.buyerNotifyUrl
+            ? `
+          <div class="row">
+            ${
+              wa.buyerNotifyUrl
+                ? `<a class="btn" href="${wa.buyerNotifyUrl}" target="_blank" rel="noopener">WhatsApp buyer</a>`
+                : ""
+            }
+            ${
+              wa.sellerNotifyUrl
+                ? `<a class="btn secondary" href="${wa.sellerNotifyUrl}" target="_blank" rel="noopener">WhatsApp seller</a>`
+                : ""
+            }
+          </div>
+          <pre class="mono" style="white-space:pre-wrap;margin:0">${escapeHtml(
+            wa.message || ""
+          )}</pre>`
+            : `<p class="tagline">Open seller board to copy order details into WhatsApp.</p>`;
+
+        panel.innerHTML = `
+          <p class="${paid ? "status-paid" : "status-pending"}">${o.status.toUpperCase()}</p>
+          <p><strong>${escapeHtml(o.productName)}</strong> × ${o.qty}</p>
+          <p class="price">GHS ${Number(o.amountGhs).toFixed(2)}</p>
+          <p>Buyer: ${escapeHtml(o.buyerName)} · +${escapeHtml(o.buyerPhone)}</p>
+          <p class="mono">Order ${escapeHtml(o.id)}${
+            o.paystackReference
+              ? `<br>Ref ${escapeHtml(o.paystackReference)}`
+              : ""
+          }</p>
+          ${waBlock}
+          ${
+            !paid
+              ? `<div class="row"><button type="button" id="recheck">Recheck payment</button></div>`
+              : ""
+          }
+        `;
+
+        const recheck = document.getElementById("recheck");
+        if (recheck) recheck.onclick = () => refresh();
+      }
+
+      function escapeHtml(s) {
+        return String(s || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      refresh();
+    </script>
+  </body>
+</html>

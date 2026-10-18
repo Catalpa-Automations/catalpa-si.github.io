@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!-- Ghana Website Sprint: complementary SME landing — sits ON Google Business Profile + WhatsApp + Paystack/MoMo. Not a Maps/Search/chat platform rival. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Akwaba Kitchen — Accra</title>
+  <meta name="description" content="Chop house & grill in Accra. Order on WhatsApp. Pay with MoMo." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,ital,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1a12;
+      --bg-2: #1a2e1f;
+      --surface: #243528;
+      --ink: #f3f0e6;
+      --muted: #b7c4b5;
+      --accent: #e8b84a;
+      --accent-2: #c45c26;
+      --wa: #25d366;
+      --radius: 4px;
+      --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+      --font-body: "Source Serif 4", Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 1.05rem;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Atmosphere: charcoal + leaf grain */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      padding: 1.25rem 1.25rem 2rem;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(15,26,18,.35) 0%, rgba(15,26,18,.92) 72%, #0f1a12 100%),
+        radial-gradient(ellipse 80% 60% at 70% 20%, #3a5a2e 0%, transparent 55%),
+        linear-gradient(135deg, #1a2e1f 0%, #0f1a12 50%, #1f1510 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8b84a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: .9;
+      pointer-events: none;
+      animation: grain 18s linear infinite;
+    }
+    @keyframes grain {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-60px, -60px); }
+    }
+    .brand {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      z-index: 2;
+      animation: rise .8s ease-out both;
+    }
+    .brand span { color: var(--accent); }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 28rem;
+      animation: rise .9s .15s ease-out both;
+    }
+    .hero-copy h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.65rem, 5.5vw, 2.35rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: .75rem;
+    }
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      max-width: 22rem;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: .9rem 1.25rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-wa {
+      background: var(--wa);
+      color: #063318;
+    }
+    .btn-wa:hover { filter: brightness(1.06); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid rgba(243,240,230,.35);
+    }
+    .btn-pay {
+      background: var(--accent);
+      color: #1a1205;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      padding: 3.5rem 1.25rem;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-display);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 1.9rem);
+      letter-spacing: -0.02em;
+      margin-bottom: .65rem;
+      line-height: 1.2;
+    }
+    .lead { color: var(--muted); margin-bottom: 1.75rem; max-width: 28rem; }
+
+    .menu-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .menu-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .35rem .75rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(243,240,230,.12);
+      animation: rise .6s ease-out both;
+    }
+    .menu-item:nth-child(2) { animation-delay: .08s; }
+    .menu-item:nth-child(3) { animation-delay: .16s; }
+    .menu-item:nth-child(4) { animation-delay: .24s; }
+    .menu-item h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .menu-item .price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .menu-item p {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .hours {
+      background: var(--bg-2);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: grid;
+      gap: .65rem;
+    }
+    .hours div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--font-display);
+      font-size: .95rem;
+    }
+    .hours .day { color: var(--muted); }
+
+    .pay-box {
+      background: var(--surface);
+      border: 1px solid rgba(232,184,74,.25);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .pay-box p { color: var(--muted); margin: .75rem 0 1.25rem; font-size: .95rem; }
+    .pay-note {
+      margin-top: 1rem;
+      font-size: .8rem;
+      color: var(--muted);
+      font-family: var(--font-display);
+    }
+
+    footer {
+      padding: 2rem 1.25rem 5.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+      font-family: var(--font-display);
+    }
+    footer a { color: var(--accent); }
+
+    /* Sticky mobile WA bar */
+    .sticky-wa {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent, rgba(15,26,18,.95) 30%);
+      display: flex;
+      justify-content: center;
+    }
+    .sticky-wa .btn { width: 100%; max-width: 24rem; box-shadow: 0 8px 28px rgba(0,0,0,.4); }
+
+    @media (min-width: 720px) {
+      .hero { padding: 2rem 3rem 3rem; }
+      .brand { top: 2rem; left: 3rem; }
+      section { padding: 4.5rem 2rem; }
+      .menu-grid { grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+      .sticky-wa { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- CONFIG: replace BUSINESS_NAME, WA_NUMBER (233…), LOCATION, PAYSTACK_LINK -->
+  <header class="hero">
+    <p class="brand">Akwaba<span>.</span></p>
+    <div class="hero-copy">
+      <h1>Grill, jollof & cold drinks — open late in Osu.</h1>
+      <p>Walk in or order ahead on WhatsApp. We cook fresh; you pay when ready — MoMo welcome.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa" href="https://wa.me/233200000000?text=Hi%20Akwaba%20Kitchen%2C%20I%27d%20like%20to%20order"
+           aria-label="Order on WhatsApp">WhatsApp to order</a>
+        <a class="btn btn-ghost" href="#menu">See today’s menu</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="menu">
+    <p class="section-label">Menu</p>
+    <h2>What we’re plating today</h2>
+    <p class="lead">Prices in GHS. Ask WhatsApp for today’s soup & specials.</p>
+    <div class="menu-grid">
+      <article class="menu-item">
+        <h3>Jollof + chicken</h3>
+        <span class="price">GH₵ 65</span>
+        <p>Party-style rice, grilled thigh, shito on the side.</p>
+      </article>
+      <article class="menu-item">
+        <h3>Banku + tilapia</h3>
+        <span class="price">GH₵ 80</span>
+        <p>Fresh tilapia, pepper, okro — shareable for two.</p>
+      </article>
+      <article class="menu-item">
+        <h3>Waakye plate</h3>
+        <span class="price">GH₵ 45</span>
+        <p>Wele, egg, spaghetti, gari — Accra classic.</p>
+      </article>
+      <article class="menu-item">
+        <h3>Grilled kebab stick</h3>
+        <span class="price">GH₵ 25</span>
+        <p>Beef or chicken. Best with cold malt.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="hours">
+    <p class="section-label">Visit</p>
+    <h2>Find us</h2>
+    <p class="lead">Oxford Street side street, Osu — look for the green awning. Parking on the side road.</p>
+    <div class="hours">
+      <div><span class="day">Mon – Thu</span><span>11:00 – 22:00</span></div>
+      <div><span class="day">Fri – Sat</span><span>11:00 – 00:00</span></div>
+      <div><span class="day">Sunday</span><span>12:00 – 21:00</span></div>
+      <div><span class="day">WhatsApp</span><span>+233 20 000 0000</span></div>
+    </div>
+  </section>
+
+  <section id="pay">
+    <p class="section-label">Pay</p>
+    <h2>MoMo & card checkout</h2>
+    <div class="pay-box">
+      <p>Prefer to prepay a catering deposit or settle a tab? Use our secure Paystack link (MTN MoMo, Telecel Cash, AirtelTigo, card).</p>
+      <!-- PLACEHOLDER: replace with Paystack payment page or Hubtel MoMo link -->
+      <a class="btn btn-pay" href="#paystack-placeholder"
+         onclick="alert('Replace this href with your Paystack payment page or MoMo checkout link.'); return false;">
+        Pay with MoMo / Paystack
+      </a>
+      <p class="pay-note">Placeholder — wire to Paystack initialize or a static payment page URL.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Akwaba Kitchen · Accra · <a href="https://maps.google.com/?q=Osu+Accra">Google Maps</a></p>
+    <p style="margin-top:.5rem">Template for Ghana Website Sprint — swap name, menu, WA number, Paystack link.</p>
+  </footer>
+
+  <div class="sticky-wa">
+    <a class="btn btn-wa" href="https://wa.me/233200000000?text=Hi%20Akwaba%20Kitchen%2C%20I%27d%20like%20to%20order">WhatsApp to order</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Pay · MoMo Checkout</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <p class="eyebrow">Demo Paystack stand-in</p>
+        <h1>Simulate MoMo payment</h1>
+        <p class="tagline">
+          No Paystack keys set. This page fakes a successful GHS MoMo charge so you
+          can test the order → confirm → WhatsApp spine.
+        </p>
+        <span class="badge demo">DEMO ONLY</span>
+      </header>
+
+      <div class="panel" id="panel">
+        <p>Loading order…</p>
+      </div>
+    </div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const orderId = params.get("order");
+      const panel = document.getElementById("panel");
+
+      async function load() {
+        if (!orderId) {
+          panel.innerHTML = `<p class="error">Missing order id</p>`;
+          return;
+        }
+        const { order } = await fetch(`/api/orders/${orderId}`).then((r) => r.json());
+        panel.innerHTML = `
+          <h2>${order.productName}</h2>
+          <p>Order <span class="mono">${order.id}</span></p>
+          <p class="price">Pay GHS ${Number(order.amountGhs).toFixed(2)}</p>
+          <p>Buyer: ${order.buyerName} · +${order.buyerPhone}</p>
+          <button type="button" id="pay">Mark paid (demo MoMo)</button>
+          <a class="btn secondary" href="/">Back to shop</a>
+        `;
+        document.getElementById("pay").onclick = async () => {
+          const btn = document.getElementById("pay");
+          btn.disabled = true;
+          btn.textContent = "Confirming…";
+          const res = await fetch(`/api/demo/pay/${orderId}`, { method: "POST" });
+          const data = await res.json();
+          if (!res.ok) {
+            alert(data.error || "Failed");
+            btn.disabled = false;
+            btn.textContent = "Mark paid (demo MoMo)";
+            return;
+          }
+          sessionStorage.setItem(`wa_${orderId}`, JSON.stringify(data.whatsapp || {}));
+          location.href = `/order.html?id=${orderId}`;
+        };
+      }
+      load();
+    </script>
+  </body>
+</html>

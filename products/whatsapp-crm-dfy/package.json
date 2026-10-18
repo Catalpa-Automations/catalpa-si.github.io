@@ -1,0 +1,16 @@
+{
+  "name": "whatsapp-crm-dfy",
+  "version": "0.1.0",
+  "description": "Ghana DFY ops kit ON Meta WhatsApp Business — labels/SOP companion, thin lead tracker + wa.me (not a WhatsApp clone)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "smoke": "node scripts/smoke_test.js",
+    "import-csv": "node sheets/scripts/import-csv.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

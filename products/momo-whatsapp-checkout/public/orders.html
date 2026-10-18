@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orders · Seller board</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <p class="eyebrow">Seller</p>
+        <h1>Order board</h1>
+        <p class="tagline">Paid vs pending — fulfill manually for MVP.</p>
+      </header>
+      <div class="grid" id="list"></div>
+      <footer><a href="/">← Shop</a></footer>
+    </div>
+    <script>
+      async function load() {
+        const { orders } = await fetch("/api/orders").then((r) => r.json());
+        const list = document.getElementById("list");
+        if (!orders.length) {
+          list.innerHTML = `<p class="tagline">No orders yet. Place one from the shop.</p>`;
+          return;
+        }
+        list.innerHTML = orders
+          .map((o) => {
+            const paid = o.status === "paid";
+            const text = encodeURIComponent(
+              `${paid ? "✅ PAID" : "⏳ PENDING"} ${o.id}\n${o.productName} × ${o.qty}\nGHS ${o.amountGhs}\n${o.buyerName} +${o.buyerPhone}`
+            );
+            return `
+            <article class="product">
+              <div class="meta">
+                <span class="${paid ? "status-paid" : "status-pending"}">${o.status}</span>
+                <span class="mono">${o.id}</span>
+              </div>
+              <h2>${escapeHtml(o.productName)} × ${o.qty}</h2>
+              <p class="price">GHS ${Number(o.amountGhs).toFixed(2)}</p>
+              <p class="desc">${escapeHtml(o.buyerName)} · +${escapeHtml(o.buyerPhone)}</p>
+              <a class="btn secondary" href="https://wa.me/${o.buyerPhone}?text=${text}" target="_blank" rel="noopener">Message buyer</a>
+            </article>`;
+          })
+          .join("");
+      }
+      function escapeHtml(s) {
+        return String(s || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+      load();
+    </script>
+  </body>
+</html>

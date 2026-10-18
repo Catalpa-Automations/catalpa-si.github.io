@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduate Job Pack Ghana — CV + LinkedIn Starter</title>
+    <meta
+      name="description"
+      content="Ghana-ready CV template, LinkedIn checklist, and interview tips. Pay with MoMo via Paystack. Instant download + WhatsApp delivery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          JobPack GH
+        </a>
+        <span class="nav-pill">Pay with MTN / Telecel / AT MoMo</span>
+      </header>
+
+      <section class="hero">
+        <div>
+          <span class="eyebrow">For Ghana graduates &amp; NYSC/NSS seekers</span>
+          <h1>Land interviews with a CV that speaks Accra, not LinkedIn-USA fluff.</h1>
+          <p class="lede">
+            The Graduate Job-Seeker Starter Pack: Ghana-style CV template, LinkedIn profile
+            checklist, interview answers for banks/NGOs/startups, and WhatsApp job-search
+            scripts — delivered instantly after MoMo payment.
+          </p>
+          <div class="price-row">
+            <div class="price" id="priceDisplay">GHS — <small>one-time</small></div>
+            <div class="price-note">Suggested retail GHS 99–250 · no subscription</div>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#checkout">Buy with MoMo</a>
+            <a class="btn btn-ghost" href="#inside">See what’s inside</a>
+          </div>
+          <p class="trust">
+            Found us on TikTok / Instagram / WhatsApp? Pay with Paystack MoMo → instant download → we finish delivery on WhatsApp. (We sell the pack — not another social app.)
+          </p>
+        </div>
+
+        <aside class="checkout-card" id="checkout">
+          <h2>Get the pack</h2>
+          <p class="hint">Enter your details → Paystack opens MoMo/card → unlock downloads.</p>
+          <form id="checkoutForm">
+            <label for="name">Full name</label>
+            <input id="name" name="name" autocomplete="name" placeholder="Ama Mensah" />
+
+            <label for="email">Email (for receipt)</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="ama@email.com"
+            />
+
+            <label for="phone">WhatsApp / MoMo number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              placeholder="024 XXX XXXX"
+            />
+
+            <p class="form-error" id="formError" role="alert"></p>
+            <button class="btn btn-primary" type="submit" id="payBtn" style="width: 100%">
+              Pay <span id="payAmount">—</span> with MoMo
+            </button>
+          </form>
+          <div class="momo-badge">
+            <span>MTN MoMo</span>
+            <span>Telecel Cash</span>
+            <span>AirtelTigo</span>
+            <span>Card (optional)</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="inside">
+        <h2>What’s in the pack</h2>
+        <p class="lede">Everything you need this week — not a 40-module course you’ll never finish.</p>
+        <div class="grid">
+          <article class="tile">
+            <h3>Ghana CV template</h3>
+            <p>
+              Clean one-page layout with +233 phone, education (UG/KNUST/UCC style), NSS,
+              references, and ATS-safe headings recruiters actually scan.
+            </p>
+          </article>
+          <article class="tile">
+            <h3>LinkedIn checklist</h3>
+            <p>
+              Headline formulas for Accra roles, About section prompts, skills to pin, and
+              how to ask for recommendations without sounding desperate.
+            </p>
+          </article>
+          <article class="tile">
+            <h3>Interview + WhatsApp scripts</h3>
+            <p>
+              Bank/NGO/startup answer frames, salary talk in GHS, and polite follow-up messages
+              for Jobberman and recruiter DMs.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li>
+            <div>
+              <strong>Pay with MoMo</strong>
+              <div>Paystack checkout — no “send screenshot to my number.”</div>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Unlock downloads</strong>
+              <div>You’re redirected to your pack files (markdown templates, ready to copy).</div>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Tap WhatsApp</strong>
+              <div>Deep link opens chat so we can send the zip / add you to tips Status group.</div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="footer">
+        <p>
+          Already paid?
+          <a href="/confirm.html">Confirm payment / unlock</a>
+          · Questions on WhatsApp after checkout.
+        </p>
+        <p>JobPack GH · Digital product · Not affiliated with Jobberman or LinkedIn.</p>
+      </footer>
+    </div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

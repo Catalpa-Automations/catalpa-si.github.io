@@ -1,0 +1,64 @@
+{
+  "leads": [
+    {
+      "id": "L-sample-001",
+      "name": "Ama Mensah",
+      "phone": "233244111222",
+      "city": "Accra",
+      "source": "Walk-in Osu",
+      "stage": "New",
+      "valueGhs": 2500,
+      "notes": "Pharmacy — 3 staff share personal WA for orders",
+      "createdAt": "2026-10-17T09:00:00.000Z",
+      "updatedAt": "2026-10-17T09:00:00.000Z"
+    },
+    {
+      "id": "L-sample-002",
+      "name": "Kwame Boateng",
+      "phone": "233201333444",
+      "city": "Kumasi",
+      "source": "Adum corridor",
+      "stage": "Contacted",
+      "valueGhs": 1800,
+      "notes": "Spare parts — loses quotes when junior is offline",
+      "createdAt": "2026-10-16T14:30:00.000Z",
+      "updatedAt": "2026-10-17T11:00:00.000Z"
+    },
+    {
+      "id": "L-sample-003",
+      "name": "Efua Darko",
+      "phone": "233277555666",
+      "city": "Accra",
+      "source": "Referral",
+      "stage": "Quoted",
+      "valueGhs": 3500,
+      "notes": "Fashion wholesale Madina — wants catalog + MoMo links",
+      "createdAt": "2026-10-15T10:00:00.000Z",
+      "updatedAt": "2026-10-17T16:00:00.000Z"
+    },
+    {
+      "id": "L-sample-004",
+      "name": "Yaw Asante",
+      "phone": "233554777888",
+      "city": "Kumasi",
+      "source": "WhatsApp Status",
+      "stage": "Won",
+      "valueGhs": 2000,
+      "notes": "Clinic — setup done; on GHS 500/mo retainer",
+      "createdAt": "2026-10-10T08:00:00.000Z",
+      "updatedAt": "2026-10-14T12:00:00.000Z"
+    },
+    {
+      "id": "L-sample-005",
+      "name": "Akosua Frimpong",
+      "phone": "233209999000",
+      "city": "Accra",
+      "source": "Cold walk",
+      "stage": "Lost",
+      "valueGhs": 1500,
+      "notes": "Using relative for free — revisit after Christmas rush",
+      "createdAt": "2026-10-12T15:00:00.000Z",
+      "updatedAt": "2026-10-13T09:00:00.000Z"
+    }
+  ]
+}

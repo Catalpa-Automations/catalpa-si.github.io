@@ -1,0 +1,369 @@
+:root {
+  --bg: #e8f2ee;
+  --bg-deep: #d5e8df;
+  --ink: #10231c;
+  --muted: #4a6358;
+  --line: #b7d0c4;
+  --panel: #f7fbf9;
+  --accent: #067a4f;
+  --accent-deep: #045c3b;
+  --gold: #e0a100;
+  --danger: #b42318;
+  --paid: #067a4f;
+  --pending: #9a6b00;
+  --radius: 16px;
+  --shadow: 0 14px 36px rgba(16, 35, 28, 0.1);
+  --font-display: "Syne", "Avenir Next", sans-serif;
+  --font-body: "Outfit", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(900px 480px at 0% 0%, #9fd4b8 0%, transparent 55%),
+    radial-gradient(700px 420px at 100% 8%, #ffe08a55 0%, transparent 50%),
+    linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(440px, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  min-height: 100dvh;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-bottom: 0.35rem;
+}
+
+.brand-mark {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  transform: translateY(-0.12rem);
+  flex-shrink: 0;
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.45;
+}
+
+.panel {
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.15rem;
+}
+
+.panel + .panel {
+  margin-top: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(6, 122, 79, 0.18);
+}
+
+.field-amount input {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.4rem;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0.95rem 1.1rem;
+  font-weight: 650;
+  font-size: 1.02rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.12s ease, background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-deep);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.btn-wa {
+  background: #128c7e;
+  color: #fff;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #10231c;
+}
+
+.error {
+  background: #fdecea;
+  color: var(--danger);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.92rem;
+  margin-bottom: 0.85rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 8px;
+}
+
+.badge-pending {
+  background: #fff0c2;
+  color: var(--pending);
+}
+
+.badge-paid {
+  background: #c8f0dc;
+  color: var(--paid);
+}
+
+.badge-demo {
+  background: #dceee6;
+  color: var(--accent-deep);
+}
+
+.invoice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.invoice-list li {
+  border-top: 1px solid var(--line);
+  padding: 0.85rem 0;
+}
+
+.invoice-list li:first-child {
+  border-top: none;
+  padding-top: 0.2rem;
+}
+
+.invoice-list a {
+  text-decoration: none;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.inv-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.inv-amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.inv-meta {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.receipt-hero {
+  text-align: center;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.receipt-hero .amount {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 10vw, 3.1rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  margin: 0.5rem 0 0.15rem;
+}
+
+.receipt-hero .desc {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.kv {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.kv div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.kv dt {
+  color: var(--muted);
+}
+
+.kv dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.toast-ok {
+  animation: pop-in 0.35s ease both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.45s ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 0.85rem;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.foot {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+}

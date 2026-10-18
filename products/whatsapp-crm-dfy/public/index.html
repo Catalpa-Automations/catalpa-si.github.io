@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhatsApp CRM DFY — Ghana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <header class="top">
+      <div class="brand">
+        <span class="mark">WA</span>
+        <div>
+          <h1>WA Ops Tracker</h1>
+          <p class="tag">Thin companion to Meta WhatsApp Business · Accra &amp; Kumasi</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn ghost" href="/api/export.csv" download>Export CSV</a>
+        <button type="button" class="btn primary" id="btn-new">+ New lead</button>
+      </div>
+    </header>
+
+    <section class="stats" id="stats" aria-live="polite"></section>
+
+    <section class="toolbar">
+      <div class="stages" id="stage-filters" role="tablist"></div>
+      <label class="search">
+        <span class="sr">Search</span>
+        <input type="search" id="q" placeholder="Search name, phone, city…" />
+      </label>
+    </section>
+
+    <main>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Lead</th>
+              <th>Stage</th>
+              <th>Value (GHS)</th>
+              <th>Source</th>
+              <th>WhatsApp</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="empty" id="empty" hidden>No leads match. Add one or clear filters.</p>
+    </main>
+
+    <dialog id="dlg">
+      <form method="dialog" id="lead-form">
+        <header>
+          <h2 id="dlg-title">New lead</h2>
+          <button type="button" class="icon" id="dlg-close" aria-label="Close">×</button>
+        </header>
+        <input type="hidden" id="f-id" />
+        <label>Name <input id="f-name" required autocomplete="name" /></label>
+        <label>Phone (0XX or 233…) <input id="f-phone" required inputmode="tel" placeholder="0244123456" /></label>
+        <div class="row2">
+          <label>City
+            <select id="f-city">
+              <option>Accra</option>
+              <option>Kumasi</option>
+              <option>Tema</option>
+              <option>Takoradi</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Stage
+            <select id="f-stage">
+              <option>New</option>
+              <option>Contacted</option>
+              <option>Quoted</option>
+              <option>Won</option>
+              <option>Lost</option>
+            </select>
+          </label>
+        </div>
+        <div class="row2">
+          <label>Source <input id="f-source" placeholder="Walk-in, Referral…" /></label>
+          <label>Value GHS <input id="f-value" type="number" min="0" step="50" value="0" /></label>
+        </div>
+        <label>Notes <textarea id="f-notes" rows="3" placeholder="Shop type, pain, next step…"></textarea></label>
+        <footer>
+          <button type="button" class="btn danger ghost" id="btn-delete" hidden>Delete</button>
+          <button type="submit" class="btn primary" id="btn-save">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

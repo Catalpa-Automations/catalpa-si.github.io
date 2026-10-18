@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!-- Ghana Website Sprint: complementary SME landing — sits ON Google Business Profile + WhatsApp + Paystack/MoMo. Not a Maps/Search/chat platform rival. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealWell Pharmacy & Clinic — Tema</title>
+  <meta name="description" content="Pharmacy and walk-in clinic in Tema. WhatsApp prescriptions. MoMo payments." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0f7f6;
+      --bg-deep: #0c3d4a;
+      --ink: #102a32;
+      --muted: #4a6670;
+      --line: #c5d9d6;
+      --accent: #0d9488;
+      --accent-soft: #ccfbf1;
+      --warn: #b45309;
+      --wa: #128c7e;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Nunito Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 1.02rem;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-content: end;
+      padding: 1.5rem 1.25rem 2rem;
+      color: #ecfeff;
+      overflow: hidden;
+      background:
+        linear-gradient(165deg, rgba(12,61,74,.88) 0%, rgba(12,61,74,.95) 55%, #0c3d4a 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath fill='%2314b8a6' fill-opacity='0.07' d='M0 40h40v40H0zm40-40h40v40H40z'/%3E%3C/svg%3E"),
+        linear-gradient(120deg, #115e59 0%, #0c3d4a 45%, #164e63 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 2px solid rgba(204,251,241,.15);
+      right: -60px;
+      top: 12%;
+      animation: pulse-ring 4s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: .5; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      letter-spacing: -0.02em;
+      animation: fade-up .7s ease both;
+    }
+    .brand small {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .75;
+      margin-top: .2rem;
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 28rem; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+      line-height: 1.15;
+      margin-bottom: .75rem;
+      animation: fade-up .75s .1s ease both;
+    }
+    .hero p {
+      opacity: .88;
+      margin-bottom: 1.4rem;
+      max-width: 24rem;
+      animation: fade-up .75s .18s ease both;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      animation: fade-up .75s .26s ease both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: .92rem;
+      padding: .9rem 1.2rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-wa {
+      background: #25d366;
+      color: #052e16;
+      box-shadow: 0 4px 16px rgba(37,211,102,.25);
+    }
+    .btn-light {
+      background: transparent;
+      color: #ecfeff;
+      border: 1.5px solid rgba(236,254,255,.35);
+    }
+    .btn-pay {
+      background: var(--accent);
+      color: #fff;
+      width: 100%;
+    }
+
+    section {
+      padding: 3rem 1.25rem;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+    .label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.45rem, 4vw, 1.85rem);
+      margin-bottom: .5rem;
+      line-height: 1.2;
+    }
+    .lead { color: var(--muted); margin-bottom: 1.4rem; }
+
+    .cards {
+      display: grid;
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.15rem 1.2rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: .35rem;
+    }
+    .card p { color: var(--muted); font-size: .95rem; }
+
+    .hours-table {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .hours-table row,
+    .hours-table .row {
+      display: flex;
+      justify-content: space-between;
+      padding: .85rem 1.1rem;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    .hours-table .row:last-child { border-bottom: none; }
+    .hours-table .row span:first-child { color: var(--muted); font-weight: 500; }
+
+    .notice {
+      margin-top: 1rem;
+      padding: .9rem 1rem;
+      background: #fff7ed;
+      border-left: 3px solid var(--warn);
+      border-radius: 0 6px 6px 0;
+      font-size: .9rem;
+      color: #7c2d12;
+    }
+
+    .pay-box {
+      background: var(--accent-soft);
+      border: 1px solid #99f6e4;
+      border-radius: 8px;
+      padding: 1.4rem;
+    }
+    .pay-box p { color: var(--muted); margin: .6rem 0 1.1rem; font-size: .95rem; }
+    .hint { margin-top: .75rem; font-size: .78rem; color: var(--muted); }
+
+    footer {
+      background: var(--bg-deep);
+      color: rgba(236,254,255,.7);
+      text-align: center;
+      padding: 2rem 1.25rem 5.5rem;
+      font-size: .85rem;
+    }
+    footer a { color: #5eead4; }
+
+    .sticky-wa {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 40;
+      padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+      background: linear-gradient(transparent, rgba(240,247,246,.97) 40%);
+    }
+    .sticky-wa .btn { width: 100%; }
+
+    @media (min-width: 720px) {
+      .hero { padding: 2.5rem 3rem 3.5rem; }
+      .brand { top: 2rem; left: 3rem; }
+      section { padding: 3.75rem 2rem; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .sticky-wa { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="brand">HealWell<small>Pharmacy · Clinic · Tema</small></p>
+    <div class="hero-inner">
+      <h1>Medicines, quick consults, WhatsApp refill.</h1>
+      <p>Licensed pharmacy with a walk-in nurse desk. Send your prescription photo — we confirm stock and price before you come.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa" href="https://wa.me/233270000000?text=Hi%20HealWell%2C%20I%20need%20help%20with%20a%20prescription">Chat on WhatsApp</a>
+        <a class="btn btn-light" href="#services">Our services</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="services">
+    <p class="label">Services</p>
+    <h2>How we help</h2>
+    <p class="lead">One place for daily meds, BP checks, and family planning supplies.</p>
+    <div class="cards">
+      <!-- Cards OK here: interactive service containers -->
+      <article class="card">
+        <h3>Dispensary</h3>
+        <p>OTC + prescription. We message you if a brand is out and suggest NHIS/private options.</p>
+      </article>
+      <article class="card">
+        <h3>Nurse desk</h3>
+        <p>BP, malaria RDT, wound dressing. Doctor referral notes when needed — no long queues.</p>
+      </article>
+      <article class="card">
+        <h3>WhatsApp refill</h3>
+        <p>Send the last pack photo. We prepare and hold for 24 hours after MoMo confirm.</p>
+      </article>
+      <article class="card">
+        <h3>Delivery (Community 1–5)</h3>
+        <p>GH₵ 15–25 depending on area. Same-day before 4pm order cut-off.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="hours">
+    <p class="label">Hours & location</p>
+    <h2>Open when you need us</h2>
+    <div class="hours-table">
+      <div class="row"><span>Mon – Sat</span><span>8:00 – 21:00</span></div>
+      <div class="row"><span>Sunday</span><span>9:00 – 18:00</span></div>
+      <div class="row"><span>Emergency line</span><span>+233 27 000 0000</span></div>
+      <div class="row"><span>Address</span><span>Community 4, Tema</span></div>
+    </div>
+    <p class="notice">Controlled medicines require a valid prescription. We do not sell antibiotics without one.</p>
+  </section>
+
+  <section id="pay">
+    <p class="label">Pay</p>
+    <h2>Settle with MoMo</h2>
+    <div class="pay-box">
+      <p>Pay for held prescriptions or delivery via Paystack — MTN MoMo, Telecel Cash, AirtelTigo, or card. You’ll get a receipt reference on WhatsApp.</p>
+      <a class="btn btn-pay" href="#paystack-placeholder"
+         onclick="alert('Replace with Paystack / Hubtel MoMo payment link for this pharmacy.'); return false;">
+        Pay with MoMo / Paystack
+      </a>
+      <p class="hint">Placeholder — pair with ReceiptMoMo for auto invoices + paid webhooks (no screenshot proof).</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>HealWell Pharmacy &amp; Clinic · Tema · <a href="https://maps.google.com/?q=Tema+Community+4">Google Maps</a></p>
+    <p style="margin-top:.4rem">Ghana Website Sprint template — pharmacy / clinic niche.</p>
+  </footer>
+
+  <div class="sticky-wa">
+    <a class="btn btn-wa" href="https://wa.me/233270000000?text=Hi%20HealWell%2C%20I%20need%20help%20with%20a%20prescription">Chat on WhatsApp</a>
+  </div>
+</body>
+</html>
