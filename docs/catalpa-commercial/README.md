@@ -1,6 +1,8 @@
-# Catalpa Automations — Commercial Pack (Solution-First)
+# Catalpa SI — Commercial Pack (Solution-First)
 
 Short forms for signing (pilot, order form, scope, exit). **One Terms doc governs** all pilots and paid plans: [`docs/catalpa-terms.md`](../catalpa-terms.md).
+
+Catalpa SI sells **automation solutions** (LLM and non-LLM). WhatsApp / CTWA order bots are the core wedge in these forms — not the only thing Catalpa does.
 
 ---
 
@@ -123,7 +125,7 @@ Write the mix in **GHS**, name the billing day, and name MoMo / Paystack as the 
 
 ## Pairing with the CTWA spine
 
-Catalpa’s core: **Meta Ads → Click-to-WhatsApp → Catalpa bot (chat / orders) → dashboard → dispatch**.
+Catalpa SI’s core go-to-market wedge: **Meta Ads → Click-to-WhatsApp → Catalpa bot (chat / orders) → dashboard → dispatch**. Broader automation engagements use the same commercial pack with a scoped module list.
 
 - Pilot = prove that spine on **their** number / catalog with **their** ad spend.  
 - Live commitment = rent the spine (SaaS / setup / per-order), not buy Catalpa’s platform.  

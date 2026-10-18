@@ -8,11 +8,15 @@ LinkedIn is already done. Do these steps in order. Finish one sitting per step.
 
 ## 1. Create Meta Business Manager for Catalpa
 
-Go to [business.facebook.com](https://business.facebook.com/) while logged into your Facebook. Create a **Business Manager** named **Catalpa Automations** (Ghana). Add your work email. Stop when the Business Manager home loads.
+Go to [business.facebook.com](https://business.facebook.com/) while logged into your Facebook. Create a **Business Manager** named **Catalpa SI** (Ghana). Add your work email. Stop when the Business Manager home loads.
 
 ## 2. Create a Meta (Facebook) Page for Catalpa
 
-In Business Manager → **Pages** → create (or claim) a Facebook Page for **Catalpa Automations**. You need this Page to run WhatsApp Business and ads.
+In Business Manager → **Pages** → create (or claim) a Facebook Page for **Catalpa SI**. You need this Page to run WhatsApp Business and ads.
+
+**Page bio (paste):**
+
+> Catalpa SI — automation for Ghana businesses (LLM and non-LLM). Core wedge: WhatsApp ads → 24/7 bots → orders → dashboard.
 
 ## 3. Open Meta for Developers and create an app
 
@@ -79,7 +83,7 @@ Open `https://YOUR_HOST/dashboard.html?tenant=catalpa`. New conversations show u
 **Primary text**
 
 > Ghana business owners: buyers already message you on WhatsApp from Facebook ads — but who answers at night?  
-> Catalpa runs a 24/7 WhatsApp bot that greets them, takes the order or lead, and shows you everything on a simple dashboard.  
+> Catalpa SI builds automation for your shop — including a 24/7 WhatsApp bot that greets them, takes the order or lead, and shows you everything on a simple dashboard.  
 > See a live demo first. You pay only when it works for your shop.
 
 **Headline**
@@ -96,6 +100,6 @@ Open `https://YOUR_HOST/dashboard.html?tenant=catalpa`. New conversations show u
 2. Bot messages: greet + short qualify questions (business type, city)  
 3. Owner phone: Catalpa dashboard with a new inbound lead / demo booked  
 4. One line on screen: “Free live demo · pay when it works”  
-5. End frame: Catalpa Automations + WhatsApp CTA  
+5. End frame: Catalpa SI + WhatsApp CTA  
 
 No chop-bar food menu in this ad — this sell is Catalpa itself.

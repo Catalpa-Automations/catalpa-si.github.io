@@ -1,4 +1,4 @@
-# Catalpa Automations — Scope Boundary (One-Pager)
+# Catalpa SI — Scope Boundary (One-Pager)
 
 Checklist to stop scope creep and “we thought it was included” fights. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 

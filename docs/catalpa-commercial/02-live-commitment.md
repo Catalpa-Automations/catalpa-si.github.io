@@ -1,4 +1,4 @@
-# Catalpa Automations — Live Commitment (Order Form)
+# Catalpa SI — Live Commitment (Order Form)
 
 Plain-language order form after live proof. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 

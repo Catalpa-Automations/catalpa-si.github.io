@@ -1,12 +1,14 @@
-# Catalpa Automations — Company Foundation
+# Catalpa SI — Company Foundation
 
-**Owner:** Samuel · Catalpa Automations (Ghana)  
-**GitHub:** [https://github.com/Catalpa-Automations](https://github.com/Catalpa-Automations)  
+**Owner:** Samuel · Catalpa SI (Ghana)  
+**GitHub (developer workspace only):** [https://github.com/Catalpa-Automations](https://github.com/Catalpa-Automations) — code org name; public / startup name is **Catalpa SI**  
 **Status:** Operating framework (living doc) · Client rules: [`docs/catalpa-terms.md`](./catalpa-terms.md)
 
 ---
 
 ## 1. Vision / wedge
+
+**Company in one line:** Catalpa SI builds **automation solutions** for Ghana businesses — LLM and non-LLM. WhatsApp / Click-to-WhatsApp is the core wedge, not the whole company.
 
 **Wedge in one line:** Meta already pays for the click. Catalpa owns what happens after — 24/7 WhatsApp bots that take orders, show the owner a live dashboard, and push dispatch — while the owner sleeps or works.
 
@@ -14,8 +16,9 @@
 - Click-to-WhatsApp (CTWA) ads dump high-intent buyers into chat. Most SMEs reply late or never.
 - Buyers already pay with MoMo. Native WhatsApp Pay is not the Ghana path — Paystack/MoMo is.
 - Owners need proof of what sold overnight — not another inbox to babysit.
+- Shops also need broader automation (ops, payments, digitization) beyond chat alone.
 
-**What we sell:** Digitization of order-taking businesses (chop bars, boutiques, clinics, spare parts, multi-staff shops) — small and larger — via bots + owner dashboard + payment + dispatch handoff.
+**What we sell:** Automation for order-taking and ops-heavy businesses (chop bars, boutiques, clinics, spare parts, multi-staff shops) — bots, dashboards, payment + dispatch handoff, and related LLM / non-LLM automation. Core go-to-market wedge: Meta CTWA → WhatsApp bot → dashboard.
 
 **What we never sell:** A rival messenger, a ChatGPT clone, or “we beat Meta.” We build **on** Meta Ads + WhatsApp Cloud API, and **on** Paystack/MoMo. OpenAI (if used) is utility only — classify, extract, draft — never the product.
 
@@ -68,7 +71,7 @@ Meta Ads (CTWA)
 
 **Day-one vs go-live:** Pilots may start with `wa.me` deep links + manual confirm if WABA approval is pending. **Live paid commitment** requires Cloud API (or agreed BSP) + real Paystack webhook — not screenshots.
 
-**Repo home:** New product code → [Catalpa-Automations](https://github.com/Catalpa-Automations). Prefer one repo per product; site repo may temporarily hold `products/` mirrors until org create-repo rights exist.
+**Repo home:** New product code → GitHub org [Catalpa-Automations](https://github.com/Catalpa-Automations) (developer workspace only). Prefer one repo per product; site repo may temporarily hold `products/` mirrors until org create-repo rights exist.
 
 ---
 
@@ -144,7 +147,7 @@ Payment starts when **any** of these is true (whichever first, as written on the
 
 ### 5A — Pilot Agreement (outline)
 
-1. **Parties** — Catalpa Automations / Samuel [legal name] ↔ Client business name, contact, WhatsApp number  
+1. **Parties** — Catalpa SI / Samuel [legal name] ↔ Client business name, contact, WhatsApp number  
 2. **Purpose** — Free pilot to show a WhatsApp order bot + dashboard for [business type]  
 3. **Pilot scope (included)** — Bullet the free list from §4 for *this* client  
 4. **Pilot exclusions** — Ads spend, extra locations, custom integrations, unlimited revisions  

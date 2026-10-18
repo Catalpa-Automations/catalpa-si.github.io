@@ -1,4 +1,4 @@
-# Terms and Conditions (Catalpa Automations)
+# Terms and Conditions (Catalpa SI)
 
 **These Terms apply to all Catalpa pilots and paid plans.** Short client forms (pilot, order form, scope, exit) are for signing. The full rules live here.
 
@@ -6,11 +6,11 @@
 
 ## Who we are
 
-Catalpa Automations (“Catalpa”) is a Ghana business. We help shops take orders on WhatsApp with bots and a simple owner dashboard.
+Catalpa SI (“Catalpa”) is a Ghana business. We build **automation solutions** — LLM and non-LLM — for shops and operators. A core product is WhatsApp order bots with a simple owner dashboard; we also automate related ops (payments, dispatch, digitization). We are not a WhatsApp-only company.
 
 ## What we provide
 
-We set up and host WhatsApp order tools: bot chat, catalog/orders, MoMo/Paystack payment links, and a dashboard. Meta Ads and WhatsApp itself are Meta’s products. We build on top of them.
+We set up and host automation tools around orders and ops: bot chat, catalog/orders, MoMo/Paystack payment links, dashboards, and related workflows. Meta Ads and WhatsApp itself are Meta’s products. We build on top of them when the engagement uses that wedge.
 
 ## Free trial / pilot
 
@@ -42,4 +42,4 @@ We work in good faith. We are not liable for Meta or Paystack outages, ad perfor
 
 These Terms are under the laws of Ghana. Disputes: try WhatsApp or a call first.  
 
-**Contact:** Catalpa Automations · Samuel · WhatsApp / email as given on your agreement.
+**Contact:** Catalpa SI · Samuel · WhatsApp / email as given on your agreement.

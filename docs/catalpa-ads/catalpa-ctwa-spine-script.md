@@ -48,7 +48,7 @@
 
 **VO:** “Want it on your number? We’ll show you a live demo for your shop — free until you see it work.”
 
-**On screen end card:** **Catalpa Automations** · WhatsApp CTA / contact · product name: *Orders from WhatsApp ads*
+**On screen end card:** **Catalpa SI** · WhatsApp CTA / contact · product name: *Orders from WhatsApp ads*
 
 ---
 
