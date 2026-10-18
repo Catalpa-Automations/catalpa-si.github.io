@@ -31,7 +31,7 @@
 
       <section class="sandbox" aria-label="Sandbox bot tester">
         <h2>Sandbox bot</h2>
-        <p class="hint">
+        <p class="hint" id="sandbox-hint">
           Simulate a customer WhatsApp message (no Meta tokens needed). Flow:
           hi → menu number → checkout → yes → demo pay.
         </p>
@@ -56,7 +56,7 @@
 
       <section class="orders-section">
         <div class="orders-head">
-          <h2>Orders</h2>
+          <h2 id="orders-title">Orders</h2>
           <button type="button" class="ghost" id="refresh-btn">Refresh</button>
         </div>
         <div id="orders" class="orders"></div>

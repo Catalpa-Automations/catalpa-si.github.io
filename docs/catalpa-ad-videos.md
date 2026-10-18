@@ -1,6 +1,8 @@
-# Catalpa selling-ad videos
+# Catalpa SI selling-ad videos
 
 **Rule:** Every product in `products/` gets one selling ad ≤ **78 seconds** (~1.3 min). Show end-to-end: what it is, what it does, how it helps the business.
+
+**Brand on screen / end card:** Always **Catalpa SI**. Never “Catalpa Automations” (that name is GitHub / developer workspace only).
 
 ## Structure (timed beats)
 

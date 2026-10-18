@@ -13,7 +13,15 @@ const ORDER_STATUSES = [
   "cancelled",
 ];
 
-/** Conversation states for the WhatsApp bot. */
+const LEAD_STATUSES = [
+  "new",
+  "demo_booked",
+  "contacted",
+  "won",
+  "lost",
+];
+
+/** Conversation states for the WhatsApp bot (orders + lead dogfood). */
 const SESSION_STATES = [
   "greet",
   "browse",
@@ -21,6 +29,12 @@ const SESSION_STATES = [
   "confirm",
   "awaiting_payment",
   "paid",
+  "ask_business_type",
+  "ask_city",
+  "ask_whatsapp",
+  "ask_meta_ads",
+  "ask_intent",
+  "done",
 ];
 
 function readJson(filePath, fallback) {
@@ -43,7 +57,12 @@ function paths(tenantId) {
     catalog: path.join(dir, "catalog.json"),
     orders: path.join(dir, "orders.json"),
     sessions: path.join(dir, "sessions.json"),
+    leads: path.join(dir, "leads.json"),
   };
+}
+
+function isLeadMode(tenantId) {
+  return getCatalog(tenantId).mode === "leads";
 }
 
 function getCatalog(tenantId) {
@@ -194,7 +213,69 @@ function resetSession(tenantId, phone) {
     state: "greet",
     cart: [],
     orderId: null,
+    leadId: null,
+    leadBusinessType: null,
+    leadCity: null,
+    leadWhatsapp: null,
+    leadHasMetaAds: null,
+    leadOfferInterest: null,
   });
+}
+
+function listLeads(tenantId) {
+  return readJson(paths(tenantId).leads, []);
+}
+
+function saveLeads(tenantId, leads) {
+  writeJson(paths(tenantId).leads, leads);
+}
+
+function findLead(tenantId, leadId) {
+  return listLeads(tenantId).find((l) => l.id === leadId) || null;
+}
+
+function createLead(tenantId, fields) {
+  const lead = {
+    id: `lead_${crypto.randomBytes(4).toString("hex")}`,
+    tenantId,
+    createdAt: new Date().toISOString(),
+    status: fields.status || "new",
+    fromPhone: normalizeGhPhone(fields.fromPhone),
+    customerName: (fields.customerName || "").trim() || "WhatsApp lead",
+    businessType: (fields.businessType || "").trim(),
+    city: (fields.city || "").trim(),
+    whatsapp: normalizeGhPhone(fields.whatsapp || fields.fromPhone),
+    hasMetaAds:
+      typeof fields.hasMetaAds === "boolean" ? fields.hasMetaAds : null,
+    intent: fields.intent || "lead",
+    offerInterest: fields.offerInterest || null,
+    notifyMessage: null,
+    notifyWaMe: null,
+    samuelPhone: null,
+    note: (fields.note || "").trim(),
+  };
+  const leads = listLeads(tenantId);
+  leads.unshift(lead);
+  saveLeads(tenantId, leads);
+  return lead;
+}
+
+function updateLead(tenantId, leadId, patch) {
+  const leads = listLeads(tenantId);
+  const idx = leads.findIndex((l) => l.id === leadId);
+  if (idx === -1) return null;
+  if (patch.status && !LEAD_STATUSES.includes(patch.status)) {
+    const err = new Error(`Invalid lead status: ${patch.status}`);
+    err.status = 400;
+    throw err;
+  }
+  leads[idx] = {
+    ...leads[idx],
+    ...patch,
+    updatedAt: new Date().toISOString(),
+  };
+  saveLeads(tenantId, leads);
+  return leads[idx];
 }
 
 /** Accept 024..., +23324..., 23324... → 233XXXXXXXXX */
@@ -232,15 +313,21 @@ function buildDispatchMessage(order, riderNote) {
 
 module.exports = {
   ORDER_STATUSES,
+  LEAD_STATUSES,
   SESSION_STATES,
   getCatalog,
   getProduct,
+  isLeadMode,
   listOrders,
   createOrder,
   updateOrder,
   findOrder,
   findOrderByReference,
   findOrderByReferenceGlobal,
+  listLeads,
+  createLead,
+  updateLead,
+  findLead,
   getSession,
   updateSession,
   resetSession,

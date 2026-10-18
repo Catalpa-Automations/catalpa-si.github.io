@@ -1,4 +1,4 @@
-# Catalpa Automations — Pilot Agreement (Live Proof)
+# Catalpa SI — Pilot Agreement (Live Proof)
 
 Plain-language pilot form for Ghana SMEs. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 
@@ -21,7 +21,7 @@ Plain-language pilot form for Ghana SMEs. Full rules: **Terms and Conditions** (
 
 ## 1. What this pilot is
 
-Catalpa Automations (“**Catalpa**”) will set up a **live WhatsApp bot and a simple dashboard** so Client can see how Click-to-WhatsApp ads → chat → orders → dispatch can work for their shop.
+Catalpa SI (“**Catalpa**”) will set up a **live WhatsApp bot and a simple dashboard** so Client can see how Click-to-WhatsApp ads → chat → orders → dispatch can work for their shop.
 
 This is a **short trial**. It is **not** a long-term contract and **not** a promise that ads will make profit.
 

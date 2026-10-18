@@ -1,4 +1,4 @@
-# Catalpa Automations — Handoff & Exit
+# Catalpa SI — Handoff & Exit
 
 Fair exit rules: Client keeps their data; Catalpa keeps platform IP. **No hostage tactics.** Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 

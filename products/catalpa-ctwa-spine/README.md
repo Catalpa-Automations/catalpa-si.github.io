@@ -111,6 +111,29 @@ Native WhatsApp Pay is **not** live in Ghana. Paystack hosted checkout is the ra
 - [Test payments](https://paystack.com/docs/payments/test-payments/) for MoMo numbers in test mode.
 - On `charge.success`, spine marks order **paid** and texts the customer confirmation (Cloud API or mock log).
 
+## Dogfood: Catalpa leads
+
+Tenant id: **`catalpa`** (`data/tenants/catalpa/`, catalog `mode: "leads"`).
+
+This is Catalpa selling Catalpa — not chop-bar food orders. Inbound WhatsApp from Meta CTWA ads for Catalpa’s own pipeline.
+
+| Step | Bot asks / does |
+|------|-----------------|
+| Greet | Welcome + short Ghana SME pitch + offer list (CTWA bot, dashboard, dispatch) |
+| Qualify | Business type → city → WhatsApp number → already run Meta ads? yes/no |
+| Close | *1* book “see live demo” or *2* capture lead only |
+| Notify | Lead appears on dashboard; optional `wa.me` / Cloud API ping to `SAMUEL_WHATSAPP` |
+
+```bash
+TENANT_ID=catalpa npm start
+# Dashboard: http://localhost:3040/dashboard.html?tenant=catalpa
+# Sandbox: hi → chop bar → Accra → same → no → 1
+```
+
+Offers in catalog: pilot then paid (solution-first). LinkedIn outreach is already live; this tenant is the WhatsApp dogfood path before client rollouts.
+
+See go-live runbook: repo `docs/catalpa-meta-go-live.md` (Meta Business from zero → Cloud API → webhook → first CTWA ad → measure leads here).
+
 ## Multi-tenant sketch
 
 | Mechanism | Example |
@@ -121,7 +144,7 @@ Native WhatsApp Pay is **not** live in Ghana. Paystack hosted checkout is the ra
 | Path | `/t/demo-ama/dashboard.html` |
 | Subdomain | `demo-ama.yourdomain.com` (first label) |
 
-Two demo tenants ship in-tree: **demo-ama** (fashion) and **demo-kofi** (food).
+Three tenants ship in-tree: **catalpa** (lead dogfood), **demo-ama** (fashion orders), **demo-kofi** (food orders).
 
 ## API surface
 
@@ -133,6 +156,8 @@ Two demo tenants ship in-tree: **demo-ama** (fashion) and **demo-kofi** (food).
 | GET | `/api/orders` | Merchant board |
 | PATCH | `/api/orders/:id` | Status / notes |
 | POST | `/api/orders/:id/dispatch` | Ready + rider note + wa.me message |
+| GET | `/api/leads` | Catalpa inbound leads (tenant `catalpa`) |
+| PATCH | `/api/leads/:id` | Lead status / note |
 | POST | `/api/sandbox/message` | Simulate inbound WA (mock) |
 | GET/POST | `/webhooks/whatsapp` | Meta verify + inbound |
 | POST | `/webhooks/paystack` | Payment success |
