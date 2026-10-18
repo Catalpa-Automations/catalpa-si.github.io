@@ -51,6 +51,8 @@ Meta Ads (CTWA)
 
 **Product rule:** Screenshot “I paid” is never proof. Only Paystack `charge.success` (or equivalent PSP webhook) moves an order to PAID.
 
+**Selling ads:** Every product gets one ≤78s end-to-end video — see [`docs/catalpa-ad-videos.md`](./catalpa-ad-videos.md).
+
 ---
 
 ## 3. Tech spine
