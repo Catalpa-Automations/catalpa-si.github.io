@@ -1,0 +1,36 @@
+{
+  "mode": "leads",
+  "merchant": {
+    "id": "catalpa",
+    "name": "Catalpa Automations",
+    "city": "Accra",
+    "tagline": "WhatsApp bots + owner dashboard for Ghana SMEs — free live demo, pay when it works",
+    "logisticsWhatsApp": null
+  },
+  "products": [
+    {
+      "id": "ctwa-bot",
+      "name": "Click-to-WhatsApp order bot",
+      "price_ghs": 0,
+      "category": "catalpa-offer",
+      "stage": "pilot_then_paid",
+      "description": "24/7 bot that greets buyers from Meta ads, shows your menu/prices, and takes the order while you work or sleep."
+    },
+    {
+      "id": "owner-dashboard",
+      "name": "Owner dashboard",
+      "price_ghs": 0,
+      "category": "catalpa-offer",
+      "stage": "pilot_then_paid",
+      "description": "See every WhatsApp order, paid vs unpaid, and who still needs a reply — on your phone."
+    },
+    {
+      "id": "dispatch-digitize",
+      "name": "Dispatch digitization",
+      "price_ghs": 0,
+      "category": "catalpa-offer",
+      "stage": "pilot_then_paid",
+      "description": "One tap from paid order to a WhatsApp handoff for rider, kitchen, or counter staff."
+    }
+  ]
+}

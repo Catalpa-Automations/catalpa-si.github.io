@@ -8,9 +8,11 @@ const els = {
   tenantSelect: document.getElementById("tenant-select"),
   modePill: document.getElementById("mode-pill"),
   orders: document.getElementById("orders"),
+  ordersTitle: document.getElementById("orders-title"),
+  sandboxHint: document.getElementById("sandbox-hint"),
+  sandboxText: document.getElementById("sandbox-text"),
   sandboxForm: document.getElementById("sandbox-form"),
   sandboxPhone: document.getElementById("sandbox-phone"),
-  sandboxText: document.getElementById("sandbox-text"),
   sandboxOut: document.getElementById("sandbox-out"),
   refreshBtn: document.getElementById("refresh-btn"),
   dispatchDialog: document.getElementById("dispatch-dialog"),
@@ -25,6 +27,7 @@ const els = {
 };
 
 let dispatchOrderId = null;
+let tenantMode = "orders";
 
 function api(path, opts = {}) {
   const url = new URL(path, location.origin);
@@ -53,6 +56,14 @@ function setTenant(id) {
 
 function formatMoney(n) {
   return `GHS ${Number(n).toFixed(2)}`;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function renderOrder(order) {
@@ -104,19 +115,49 @@ function renderOrder(order) {
   `;
 }
 
-function escapeHtml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+function renderLead(lead) {
+  const statusOptions = ["new", "demo_booked", "contacted", "won", "lost"];
+  const metaAds =
+    lead.hasMetaAds === true ? "yes" : lead.hasMetaAds === false ? "no" : "—";
+  return `
+    <article class="order" data-lead="${lead.id}">
+      <div class="order-top">
+        <span class="order-id">${lead.id}</span>
+        <span class="status ${lead.status}">${lead.status}</span>
+      </div>
+      <p class="amount">${lead.intent === "demo" ? "See live demo" : "Lead capture"}</p>
+      <p class="meta">${escapeHtml(lead.businessType || "—")} · ${escapeHtml(lead.city || "—")}</p>
+      <p class="meta">WA +${lead.whatsapp || lead.fromPhone} · Meta ads: ${metaAds}</p>
+      <p class="meta">${escapeHtml(lead.customerName || "")}${
+        lead.offerInterest ? ` · ${escapeHtml(lead.offerInterest)}` : ""
+      }</p>
+      <div class="actions">
+        <select data-lead-status="${lead.id}" aria-label="Lead status">
+          ${statusOptions
+            .map(
+              (s) =>
+                `<option value="${s}" ${s === lead.status ? "selected" : ""}>${s}</option>`
+            )
+            .join("")}
+        </select>
+        ${
+          lead.notifyWaMe
+            ? `<a href="${lead.notifyWaMe}" target="_blank" rel="noopener">Notify Samuel (wa.me)</a>`
+            : ""
+        }
+      </div>
+    </article>
+  `;
 }
 
 async function loadHealth() {
   const h = await api("/api/health");
-  els.modePill.textContent = h.whatsappMock
-    ? "WA mock · " + (h.paystackDemo ? "Paystack demo" : "Paystack live")
-    : "WA cloud · " + (h.paystackDemo ? "Paystack demo" : "Paystack live");
+  tenantMode = h.mode || "orders";
+  els.modePill.textContent =
+    (tenantMode === "leads" ? "Leads · " : "Orders · ") +
+    (h.whatsappMock
+      ? "WA mock · " + (h.paystackDemo ? "Paystack demo" : "Paystack live")
+      : "WA cloud · " + (h.paystackDemo ? "Paystack demo" : "Paystack live"));
   els.modePill.classList.toggle("ok", !h.whatsappMock || h.paystackDemo);
 }
 
@@ -125,23 +166,53 @@ async function loadTenants() {
   els.tenantSelect.innerHTML = data.tenants
     .map(
       (t) =>
-        `<option value="${t.id}" ${t.id === tenant ? "selected" : ""}>${t.name} (${t.id})</option>`
+        `<option value="${t.id}" ${t.id === tenant ? "selected" : ""}>${t.name} (${t.id})${
+          t.mode === "leads" ? " · leads" : ""
+        }</option>`
     )
     .join("");
 }
 
 async function loadCatalogHeader() {
   const cat = await api("/api/catalog");
+  tenantMode = cat.mode === "leads" ? "leads" : "orders";
   els.merchantName.textContent = cat.merchant?.name || tenant;
   els.merchantSub.textContent =
-    (cat.merchant?.tagline || "WhatsApp orders") +
+    (cat.merchant?.tagline ||
+      (tenantMode === "leads" ? "Catalpa inbound leads" : "WhatsApp orders")) +
     (cat.merchant?.city ? ` · ${cat.merchant.city}` : "");
+  if (els.ordersTitle) {
+    els.ordersTitle.textContent =
+      tenantMode === "leads" ? "Inbound leads" : "Orders";
+  }
+  if (els.sandboxHint) {
+    els.sandboxHint.textContent =
+      tenantMode === "leads"
+        ? "Simulate a Catalpa lead (no Meta tokens). Flow: hi → business type → city → same → yes/no → 1 (demo) or 2 (lead)."
+        : "Simulate a customer WhatsApp message (no Meta tokens needed). Flow: hi → menu number → checkout → yes → demo pay.";
+  }
+  if (els.sandboxText) {
+    els.sandboxText.placeholder =
+      tenantMode === "leads"
+        ? "hi / chop bar / Accra / same / no / 1"
+        : "hi / menu / 5 / checkout / yes";
+  }
   if (cat.merchant?.logisticsWhatsApp) {
     els.logisticsPhone.placeholder = cat.merchant.logisticsWhatsApp;
   }
 }
 
-async function loadOrders() {
+async function loadBoard() {
+  if (tenantMode === "leads") {
+    const data = await api("/api/leads");
+    if (!data.leads.length) {
+      els.orders.innerHTML =
+        '<p class="empty">No leads yet. Use the sandbox bot above (tenant: catalpa).</p>';
+      return;
+    }
+    els.orders.innerHTML = data.leads.map(renderLead).join("");
+    return;
+  }
   const data = await api("/api/orders");
   if (!data.orders.length) {
     els.orders.innerHTML =
@@ -152,6 +223,20 @@ async function loadOrders() {
 }
 
 els.orders.addEventListener("change", async (e) => {
+  const leadSel = e.target.closest("select[data-lead-status]");
+  if (leadSel) {
+    const id = leadSel.getAttribute("data-lead-status");
+    try {
+      await api(`/api/leads/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: leadSel.value }),
+      });
+      await loadBoard();
+    } catch (err) {
+      alert(err.message);
+    }
+    return;
+  }
   const sel = e.target.closest("select[data-status]");
   if (!sel) return;
   const id = sel.getAttribute("data-status");
@@ -160,7 +245,7 @@ els.orders.addEventListener("change", async (e) => {
       method: "PATCH",
       body: JSON.stringify({ status: sel.value }),
     });
-    await loadOrders();
+    await loadBoard();
   } catch (err) {
     alert(err.message);
   }
@@ -196,7 +281,7 @@ els.dispatchForm.addEventListener("submit", async (e) => {
       els.dispatchLinkWrap.hidden = false;
       els.dispatchLink.href = data.waMeLink;
     }
-    await loadOrders();
+    await loadBoard();
   } catch (err) {
     alert(err.message);
   }
@@ -214,10 +299,14 @@ els.sandboxForm.addEventListener("submit", async (e) => {
       }),
     });
     els.sandboxOut.hidden = false;
-    els.sandboxOut.textContent = (data.botReplies || []).join("\n\n---\n\n");
+    let out = (data.botReplies || []).join("\n\n---\n\n");
+    if (data.notifyWaMe) {
+      out += `\n\n---\nNotify Samuel: ${data.notifyWaMe}`;
+    }
+    els.sandboxOut.textContent = out;
     els.sandboxText.value = "";
     els.sandboxText.focus();
-    await loadOrders();
+    await loadBoard();
   } catch (err) {
     alert(err.message);
   }
@@ -231,12 +320,14 @@ els.tenantSelect.addEventListener("change", async () => {
 els.refreshBtn.addEventListener("click", () => refreshAll());
 
 async function refreshAll() {
-  await Promise.all([loadHealth(), loadCatalogHeader(), loadOrders()]);
+  await loadHealth();
+  await loadCatalogHeader();
+  await loadBoard();
 }
 
 (async function init() {
   setTenant(tenant);
   await loadTenants();
   await refreshAll();
-  setInterval(loadOrders, 8000);
+  setInterval(loadBoard, 8000);
 })();

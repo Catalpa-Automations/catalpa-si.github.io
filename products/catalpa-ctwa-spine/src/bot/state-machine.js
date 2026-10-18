@@ -9,6 +9,7 @@ const store = require("../store");
 const replies = require("./replies");
 const paystack = require("../paystack");
 const { isDemoPaystack } = require("../env");
+const leadFlow = require("./lead-flow");
 
 function normalizeInput(text) {
   return String(text || "")
@@ -98,6 +99,16 @@ async function handleMessage({
   contactName,
   baseUrl,
 }) {
+  if (leadFlow.isLeadTenant(tenantId)) {
+    return leadFlow.handleLeadMessage({
+      tenantId,
+      fromPhone,
+      text,
+      contactName,
+      baseUrl,
+    });
+  }
+
   let session = store.getSession(tenantId, fromPhone);
   if (contactName && !session.customerName) {
     session = store.updateSession(tenantId, fromPhone, {
@@ -276,4 +287,5 @@ module.exports = {
   markOrderPaid,
   cartTotal,
   findProductByInput,
+  isLeadTenant: leadFlow.isLeadTenant,
 };

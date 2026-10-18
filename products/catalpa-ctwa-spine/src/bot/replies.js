@@ -99,6 +99,89 @@ function paidConfirm(order) {
   ].join("\n");
 }
 
+/** —— Lead dogfood (tenant mode: leads) —— */
+
+function leadGreet(tenantId) {
+  const name = merchantName(tenantId);
+  return [
+    `Welcome to *${name}* 👋`,
+    "",
+    "We help Ghana SMEs take orders on WhatsApp from Meta ads — bot + owner dashboard + dispatch.",
+    "No upfront build fee: you see it live first, then you pay.",
+    "",
+    "_Reply *offers* anytime · *help* · *reset*_",
+  ].join("\n");
+}
+
+function leadOffers(tenantId) {
+  const { products, merchant } = store.getCatalog(tenantId);
+  const lines = [
+    `*What ${merchant?.name || "Catalpa"} offers*`,
+    "(Pilot free → paid when it works for you)",
+    "",
+  ];
+  (products || []).forEach((p, i) => {
+    lines.push(`*${i + 1}.* ${p.name}`, `   _${p.description || p.id}_`, "");
+  });
+  lines.push("Reply a *number* if one interest you, or continue with your business type.");
+  return lines.join("\n");
+}
+
+function leadAskBusinessType() {
+  return "What kind of business do you run? (e.g. chop bar, boutique, clinic, spare parts, salon)";
+}
+
+function leadAskCity() {
+  return "Which city or town are you in?";
+}
+
+function leadAskWhatsapp(currentPhone) {
+  return [
+    "Best WhatsApp number for Samuel to reach you?",
+    `Reply *same* to use this chat (+${currentPhone}), or send another number (024…).`,
+  ].join("\n");
+}
+
+function leadAskMetaAds() {
+  return "Do you already run Meta (Facebook / Instagram) ads? Reply *yes* or *no*.";
+}
+
+function leadAskIntent() {
+  return [
+    "What next?",
+    "*1* — Book a *see live demo* (Samuel shows the Catalpa bot working)",
+    "*2* — Just leave my details (Samuel follows up)",
+  ].join("\n");
+}
+
+function leadCaptured(lead) {
+  const lines = [
+    lead.intent === "demo"
+      ? "✅ *Demo booked* — Samuel will WhatsApp you to set a time."
+      : "✅ *Got your details* — Samuel will follow up on WhatsApp.",
+    "",
+    `*${lead.businessType}* · ${lead.city}`,
+    `WhatsApp: +${lead.whatsapp}`,
+    `Meta ads today: ${lead.hasMetaAds ? "yes" : "no"}`,
+    lead.offerInterest ? `Interest: ${lead.offerInterest}` : null,
+    "",
+    "You can reply *offers* anytime, or *reset* to start again.",
+    "_Catalpa Automations · Accra_",
+  ].filter(Boolean);
+  return lines.join("\n");
+}
+
+function leadHelp() {
+  return [
+    "*Catalpa lead bot*",
+    "1. *hi* — start",
+    "2. Answer: business type → city → WhatsApp → Meta ads yes/no",
+    "3. Pick *1* (live demo) or *2* (leave details)",
+    "",
+    "*offers* — what we sell · *reset* — start over",
+  ].join("\n");
+}
+
 module.exports = {
   greet,
   help,
@@ -108,4 +191,13 @@ module.exports = {
   paymentLink,
   paidConfirm,
   merchantName,
+  leadGreet,
+  leadOffers,
+  leadAskBusinessType,
+  leadAskCity,
+  leadAskWhatsapp,
+  leadAskMetaAds,
+  leadAskIntent,
+  leadCaptured,
+  leadHelp,
 };

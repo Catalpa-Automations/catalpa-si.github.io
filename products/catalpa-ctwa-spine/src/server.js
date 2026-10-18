@@ -117,9 +117,12 @@ async function processInboundMessages(tenantId, messages, req) {
   const results = [];
   for (const msg of messages) {
     if (!msg.text || msg.text.startsWith("[")) {
+      const hint = store.isLeadMode(tenantId)
+        ? "Please send a text message. Reply *hi* to start."
+        : "Please send a text message. Reply *menu* to browse.";
       await whatsapp.sendText({
         toPhone: msg.from,
-        body: "Please send a text message. Reply *menu* to browse.",
+        body: hint,
         tenantId,
       });
       continue;
@@ -137,6 +140,17 @@ async function processInboundMessages(tenantId, messages, req) {
         body: reply,
         tenantId,
       });
+    }
+    if (result.lead?.notifyMessage && result.lead.samuelPhone && !isMockWhatsApp()) {
+      try {
+        await whatsapp.sendText({
+          toPhone: result.lead.samuelPhone,
+          body: result.lead.notifyMessage,
+          tenantId,
+        });
+      } catch (e) {
+        console.error("Samuel notify failed:", e.message);
+      }
     }
     results.push(result);
   }
@@ -161,6 +175,7 @@ async function handleApi(req, res, url, tenantId) {
       ok: true,
       product: "catalpa-ctwa-spine",
       tenantId,
+      mode: store.isLeadMode(tenantId) ? "leads" : "orders",
       currency: process.env.CURRENCY || "GHS",
       whatsappMock: isMockWhatsApp(),
       paystackDemo: isDemoPaystack(),
@@ -177,6 +192,7 @@ async function handleApi(req, res, url, tenantId) {
           id,
           name: cat.merchant?.name || id,
           city: cat.merchant?.city || null,
+          mode: cat.mode === "leads" ? "leads" : "orders",
         };
       }),
       active: tenantId,
@@ -195,6 +211,31 @@ async function handleApi(req, res, url, tenantId) {
       orders: store.listOrders(tenantId),
       statuses: store.ORDER_STATUSES,
     });
+    return true;
+  }
+
+  if (req.method === "GET" && pathname === "/api/leads") {
+    sendJson(res, 200, {
+      tenantId,
+      mode: store.isLeadMode(tenantId) ? "leads" : "orders",
+      leads: store.listLeads(tenantId),
+      statuses: store.LEAD_STATUSES,
+    });
+    return true;
+  }
+
+  const leadMatch = pathname.match(/^\/api\/leads\/([^/]+)$/);
+  if (req.method === "PATCH" && leadMatch) {
+    const { json } = await readBody(req);
+    const patch = {};
+    if (json.status) patch.status = json.status;
+    if (json.note !== undefined) patch.note = String(json.note);
+    const lead = store.updateLead(tenantId, leadMatch[1], patch);
+    if (!lead) {
+      sendJson(res, 404, { error: "Lead not found" });
+      return true;
+    }
+    sendJson(res, 200, { lead });
     return true;
   }
 
@@ -309,12 +350,28 @@ async function handleApi(req, res, url, tenantId) {
     for (const reply of result.replies) {
       await whatsapp.sendText({ toPhone: from, body: reply, tenantId });
     }
+
+    // Dogfood: optional notify Samuel via Cloud API when a lead is captured
+    if (result.lead?.notifyMessage && result.lead.samuelPhone && !isMockWhatsApp()) {
+      try {
+        await whatsapp.sendText({
+          toPhone: result.lead.samuelPhone,
+          body: result.lead.notifyMessage,
+          tenantId,
+        });
+      } catch (e) {
+        console.error("Samuel notify failed:", e.message);
+      }
+    }
+
     const sent = whatsapp.getOutboundLog({ clear: false }).slice(before);
 
     sendJson(res, 200, {
       tenantId,
       session: result.session,
       order: result.order || null,
+      lead: result.lead || null,
+      notifyWaMe: result.notifyWaMe || result.lead?.notifyWaMe || null,
       botReplies: result.replies,
       outbound: sent,
     });
