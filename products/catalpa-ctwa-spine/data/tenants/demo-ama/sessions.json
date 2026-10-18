@@ -1,0 +1,20 @@
+{
+  "233241234567": {
+    "phone": "233241234567",
+    "tenantId": "demo-ama",
+    "state": "paid",
+    "cart": [],
+    "orderId": "ord_f429fbfa",
+    "customerName": null,
+    "updatedAt": "2026-10-18T10:27:06.993Z"
+  },
+  "233249998877": {
+    "phone": "233249998877",
+    "tenantId": "demo-ama",
+    "state": "paid",
+    "cart": [],
+    "orderId": "ord_19e23759",
+    "customerName": "Demo Buyer",
+    "updatedAt": "2026-10-18T10:27:27.077Z"
+  }
+}

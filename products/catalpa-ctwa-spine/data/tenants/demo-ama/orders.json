@@ -1,0 +1,59 @@
+[
+  {
+    "id": "ord_19e23759",
+    "tenantId": "demo-ama",
+    "createdAt": "2026-10-18T10:27:24.688Z",
+    "status": "dispatched",
+    "items": [
+      {
+        "productId": "black-soap-bar",
+        "name": "African Black Soap Bar",
+        "unitPriceGhs": 25,
+        "qty": 1,
+        "lineTotalGhs": 25
+      }
+    ],
+    "amountGhs": 25,
+    "currency": "GHS",
+    "customerName": "Demo Buyer",
+    "customerPhone": "233249998877",
+    "note": "",
+    "paystackReference": "demo_ord_19e23759",
+    "paymentUrl": "http://localhost:3040/t/demo-ama/pay-demo.html?order=ord_19e23759",
+    "paidAt": "2026-10-18T10:27:26.080Z",
+    "riderNote": "Okada to East Legon, call on arrival",
+    "dispatchMessage": "🚚 *DISPATCH* — Ama Boutique\nOrder: ord_19e23759\nStatus: dispatched\nCustomer: Demo Buyer\nPhone: +233249998877\nTotal: GHS 25.00\n\n*Items:*\n• African Black Soap Bar × 1 — GHS 25.00\n\nRider / logistics: Okada to East Legon, call on arrival\n\n_Catalpa CTWA spine · handoff via WhatsApp_",
+    "dispatchedAt": "2026-10-18T10:27:27.422Z",
+    "merchantName": "Ama Boutique",
+    "updatedAt": "2026-10-18T10:27:27.422Z",
+    "logisticsPhone": "233200000001"
+  },
+  {
+    "id": "ord_f429fbfa",
+    "tenantId": "demo-ama",
+    "createdAt": "2026-10-18T10:27:05.481Z",
+    "status": "paid",
+    "items": [
+      {
+        "productId": "black-soap-bar",
+        "name": "African Black Soap Bar",
+        "unitPriceGhs": 25,
+        "qty": 1,
+        "lineTotalGhs": 25
+      }
+    ],
+    "amountGhs": 25,
+    "currency": "GHS",
+    "customerName": "WhatsApp customer",
+    "customerPhone": "233241234567",
+    "note": "",
+    "paystackReference": "demo_ord_f429fbfa",
+    "paymentUrl": "http://localhost:3040/t/demo-ama/pay-demo.html?order=ord_f429fbfa",
+    "paidAt": "2026-10-18T10:27:06.551Z",
+    "riderNote": null,
+    "dispatchMessage": null,
+    "dispatchedAt": null,
+    "merchantName": "Ama Boutique",
+    "updatedAt": "2026-10-18T10:27:06.552Z"
+  }
+]
