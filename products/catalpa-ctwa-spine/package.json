@@ -1,0 +1,16 @@
+{
+  "name": "catalpa-ctwa-spine",
+  "version": "0.1.0",
+  "description": "Catalpa FOUNDATION: Meta CTWA → WhatsApp Cloud API bot → Paystack/MoMo → merchant dashboard → dispatch",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "demo": "node scripts/sandbox-demo.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop · MoMo WhatsApp Checkout</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <p class="eyebrow">Catalpa · beside WhatsApp</p>
+        <h1 id="seller-name">Loading…</h1>
+        <p class="tagline" id="seller-tagline"></p>
+        <span class="badge" id="mode-badge">Checking Paystack…</span>
+      </header>
+
+      <div class="grid" id="catalog"></div>
+
+      <footer>
+        Pay MoMo on Paystack → confirm back in WhatsApp (Meta). Chat stays on WhatsApp.
+        <a href="/orders.html">Seller order board</a>
+      </footer>
+    </div>
+
+    <dialog id="checkout-dialog">
+      <form class="dialog-body" id="checkout-form" method="dialog">
+        <h3 id="dialog-title">Order</h3>
+        <input type="hidden" id="product-id" />
+        <label>
+          Quantity
+          <input type="number" id="qty" min="1" value="1" required />
+        </label>
+        <label>
+          Your name
+          <input type="text" id="buyer-name" required placeholder="Kwame Mensah" />
+        </label>
+        <label>
+          WhatsApp number
+          <input
+            type="tel"
+            id="buyer-phone"
+            required
+            placeholder="024XXXXXXX or 23324…"
+          />
+        </label>
+        <label>
+          Note (optional)
+          <textarea id="note" rows="2" placeholder="Size L, deliver to East Legon"></textarea>
+        </label>
+        <p class="error" id="form-error" hidden></p>
+        <div class="row">
+          <button type="submit" id="pay-btn">Pay with MoMo / Paystack</button>
+          <button type="button" class="secondary" id="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

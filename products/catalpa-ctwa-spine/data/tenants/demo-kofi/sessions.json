@@ -1,0 +1,11 @@
+{
+  "233200111222": {
+    "phone": "233200111222",
+    "tenantId": "demo-kofi",
+    "state": "browse",
+    "cart": [],
+    "orderId": null,
+    "customerName": "Sandbox Customer",
+    "updatedAt": "2026-10-18T10:27:42.863Z"
+  }
+}

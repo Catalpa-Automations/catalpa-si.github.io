@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Confirm payment — JobPack GH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          JobPack GH
+        </a>
+      </header>
+
+      <div class="panel">
+        <span class="eyebrow">Manual unlock</span>
+        <h1>Confirm your payment</h1>
+        <p class="lede" id="hint">
+          Paid but not redirected? Enter the demo code (or your ops code) to unlock downloads.
+          With live Paystack keys, the callback/webhook unlocks you automatically.
+        </p>
+        <p class="form-error" id="banner"></p>
+
+        <form id="confirmForm">
+          <label for="email">Email used at checkout</label>
+          <input id="email" type="email" required placeholder="ama@email.com" />
+
+          <label for="reference">Paystack reference (optional)</label>
+          <input id="reference" placeholder="jp_…" />
+
+          <label for="code">Confirm code</label>
+          <input id="code" required placeholder="JOBPACK-DEMO" autocomplete="off" />
+
+          <p class="form-error" id="formError" role="alert"></p>
+          <button class="btn btn-primary" type="submit" style="width: 100%">Unlock pack</button>
+        </form>
+
+        <p class="trust" style="margin-top: 1rem">
+          Default demo code is in <code>.env</code> (<code>MANUAL_CONFIRM_CODE</code>). Disable
+          <code>ALLOW_MANUAL_CONFIRM</code> in production.
+        </p>
+        <p style="margin-top: 1rem"><a href="/">← Back to landing</a></p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const params = new URLSearchParams(location.search);
+        const banner = document.getElementById("banner");
+        const errMap = {
+          missing_reference: "No payment reference on the callback URL.",
+          not_paid: "Paystack says this reference is not paid yet.",
+          verify_failed: "Could not verify with Paystack. Try again or unlock manually.",
+        };
+        if (params.get("error")) {
+          banner.textContent = errMap[params.get("error")] || params.get("error");
+        }
+        if (params.get("ref")) {
+          document.getElementById("reference").value = params.get("ref");
+        }
+
+        document.getElementById("confirmForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const formError = document.getElementById("formError");
+          formError.textContent = "";
+          try {
+            const res = await fetch("/api/confirm-manual", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: document.getElementById("email").value,
+                reference: document.getElementById("reference").value,
+                code: document.getElementById("code").value,
+              }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || "Confirm failed");
+            location.href = data.successUrl;
+          } catch (err) {
+            formError.textContent = err.message;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

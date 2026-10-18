@@ -1,0 +1,50 @@
+{
+  "seller": {
+    "id": "ama-boutique",
+    "name": "Ama Boutique",
+    "city": "Accra",
+    "tagline": "Ready-to-wear · Madina → delivery across Accra"
+  },
+  "products": [
+    {
+      "id": "ankara-midi-01",
+      "name": "Ankara Midi Dress",
+      "price_ghs": 180,
+      "stock": 8,
+      "category": "fashion",
+      "description": "Size M–XL. Soft cotton blend. Pickup Madina or delivery GHS 20 Accra."
+    },
+    {
+      "id": "shea-butter-250",
+      "name": "Raw Shea Butter 250g",
+      "price_ghs": 45,
+      "stock": 40,
+      "category": "beauty",
+      "description": "Unrefined Northern Ghana shea. Ideal for hair + skin."
+    },
+    {
+      "id": "beaded-bag-teal",
+      "name": "Teal Beaded Clutch",
+      "price_ghs": 95,
+      "stock": 5,
+      "category": "accessories",
+      "description": "Handmade. Fits phone + cards. One of five."
+    },
+    {
+      "id": "kente-scarf",
+      "name": "Kente Accent Scarf",
+      "price_ghs": 70,
+      "stock": 12,
+      "category": "fashion",
+      "description": "Lightweight. Gift-ready packaging on request."
+    },
+    {
+      "id": "black-soap-bar",
+      "name": "African Black Soap Bar",
+      "price_ghs": 25,
+      "stock": 60,
+      "category": "beauty",
+      "description": "Plantain peel base. Gentle daily wash."
+    }
+  ]
+}

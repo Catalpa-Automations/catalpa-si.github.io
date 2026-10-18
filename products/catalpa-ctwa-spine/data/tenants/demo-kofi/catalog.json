@@ -1,0 +1,35 @@
+{
+  "merchant": {
+    "id": "demo-kofi",
+    "name": "Kofi Fresh Foods",
+    "city": "Kumasi",
+    "tagline": "Jollof packs · same-day Adum & Asokwa",
+    "logisticsWhatsApp": "233200000002"
+  },
+  "products": [
+    {
+      "id": "jollof-pack",
+      "name": "Jollof Chicken Pack",
+      "price_ghs": 55,
+      "stock": 30,
+      "category": "food",
+      "description": "Spicy jollof + grilled chicken + shito."
+    },
+    {
+      "id": "waakye-box",
+      "name": "Waakye Box",
+      "price_ghs": 40,
+      "stock": 25,
+      "category": "food",
+      "description": "Waakye, egg, spaghetti, salad."
+    },
+    {
+      "id": "kelewle-6",
+      "name": "Kelewele (6 pcs)",
+      "price_ghs": 20,
+      "stock": 50,
+      "category": "food",
+      "description": "Hot spiced plantain."
+    }
+  ]
+}

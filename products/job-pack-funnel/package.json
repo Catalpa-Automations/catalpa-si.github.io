@@ -1,0 +1,15 @@
+{
+  "name": "job-pack-funnel",
+  "version": "1.0.0",
+  "description": "Ghana graduate job-seeker starter pack — Paystack MoMo checkout + WhatsApp delivery",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "private": true
+}

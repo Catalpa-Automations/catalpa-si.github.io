@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Job Pack is ready — JobPack GH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          JobPack GH
+        </a>
+      </header>
+
+      <div class="panel" id="panel">
+        <span class="eyebrow">Payment confirmed</span>
+        <h1>Your starter pack is unlocked</h1>
+        <p class="lede" id="statusLine">Loading your downloads…</p>
+
+        <ul class="file-list" id="fileList"></ul>
+
+        <a class="btn wa-btn" id="waLink" href="#" target="_blank" rel="noopener">
+          Send pack via WhatsApp
+        </a>
+        <p class="trust" style="margin-top: 1rem">
+          Tip: tap WhatsApp so we can also drop the PDF zip / tips group invite.
+          Keep this page open — your link expires in 7 days.
+        </p>
+        <p style="margin-top: 1.25rem">
+          <a href="/">← Back to landing</a>
+        </p>
+      </div>
+    </div>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(location.search);
+        const token = params.get("token");
+        const ref = params.get("ref") || "";
+        const statusLine = document.getElementById("statusLine");
+        const fileList = document.getElementById("fileList");
+        const waLink = document.getElementById("waLink");
+
+        if (!token) {
+          statusLine.textContent = "Missing unlock token. If you paid, use Confirm payment.";
+          waLink.href = "/confirm.html";
+          waLink.textContent = "Confirm payment";
+          return;
+        }
+
+        try {
+          const res = await fetch("/api/unlock/" + encodeURIComponent(token));
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Unlock failed");
+
+          statusLine.textContent =
+            data.packName +
+            " · GHS " +
+            data.amountGhs +
+            (ref ? " · Ref " + ref : " · Ref " + data.reference);
+
+          fileList.innerHTML = (data.files || [])
+            .map(function (f) {
+              const url = "/api/download/" + encodeURIComponent(token) + "/" + encodeURIComponent(f.name);
+              return (
+                "<li><span>" +
+                f.name +
+                '</span><a href="' +
+                url +
+                '" download>Download</a></li>'
+              );
+            })
+            .join("");
+
+          waLink.href = data.whatsapp;
+        } catch (err) {
+          statusLine.textContent = err.message || "Could not unlock. Try Confirm payment.";
+          waLink.href = "/confirm.html?ref=" + encodeURIComponent(ref);
+          waLink.textContent = "Confirm / unlock manually";
+          waLink.classList.remove("wa-btn");
+          waLink.classList.add("btn-primary");
+        }
+      })();
+    </script>
+  </body>
+</html>

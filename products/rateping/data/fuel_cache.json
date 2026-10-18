@@ -1,0 +1,5 @@
+{
+  "petrol_ghs": 13.52,
+  "diesel_ghs": 14.18,
+  "source": "seed cache — replace via /setfuel or PETROL_GHS/DIESEL_GHS after checking NPA"
+}

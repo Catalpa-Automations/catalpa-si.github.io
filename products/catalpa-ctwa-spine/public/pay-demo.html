@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo pay · Catalpa</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell narrow">
+      <p class="brand">Catalpa</p>
+      <h1>Demo MoMo pay</h1>
+      <p class="sub">
+        Stand-in for Paystack hosted checkout when keys are unset. Marks the
+        order <strong>paid</strong> and notifies the WhatsApp session.
+      </p>
+      <div id="panel" class="pay-panel">Loading…</div>
+    </div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const orderId = params.get("order");
+      const pathParts = location.pathname.split("/");
+      const tIdx = pathParts.indexOf("t");
+      const tenantFromPath = tIdx >= 0 ? pathParts[tIdx + 1] : null;
+      const tenant =
+        params.get("tenant") || tenantFromPath || localStorage.getItem("catalpa_tenant") || "demo-ama";
+
+      async function load() {
+        const panel = document.getElementById("panel");
+        if (!orderId) {
+          panel.textContent = "Missing order id";
+          return;
+        }
+        const res = await fetch(`/api/orders/${orderId}?tenant=${tenant}`, {
+          headers: { "X-Tenant-Id": tenant },
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          panel.textContent = data.error || "Order not found";
+          return;
+        }
+        const o = data.order;
+        panel.innerHTML = `
+          <p><strong>${o.id}</strong> · ${o.status}</p>
+          <p>${o.items.map((i) => `${i.name} × ${i.qty}`).join(", ")}</p>
+          <p class="amount">GHS ${Number(o.amountGhs).toFixed(2)}</p>
+          <button id="pay" ${o.status === "paid" ? "disabled" : ""}>
+            ${o.status === "paid" ? "Already paid" : "Simulate MoMo success"}
+          </button>
+          <p class="hint"><a href="/dashboard.html?tenant=${tenant}">Back to dashboard</a></p>
+        `;
+        document.getElementById("pay")?.addEventListener("click", async () => {
+          const r = await fetch(`/api/demo/pay/${orderId}?tenant=${tenant}`, {
+            method: "POST",
+            headers: { "X-Tenant-Id": tenant, "Content-Type": "application/json" },
+          });
+          const j = await r.json();
+          if (!r.ok) {
+            alert(j.error || "Failed");
+            return;
+          }
+          location.reload();
+        });
+      }
+      load();
+    </script>
+  </body>
+</html>

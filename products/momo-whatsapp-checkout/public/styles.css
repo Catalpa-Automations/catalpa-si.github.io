@@ -1,0 +1,231 @@
+:root {
+  --bg: #f6f1e8;
+  --ink: #1c1914;
+  --muted: #5c5346;
+  --accent: #0b6e4f;
+  --accent-dark: #08563e;
+  --card: #fffdf8;
+  --line: #ddd4c4;
+  --warn: #9a3412;
+  --ok: #0b6e4f;
+  --shadow: 0 12px 40px rgba(28, 25, 20, 0.08);
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, #d8efe4 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, #f0e0c8 0%, transparent 50%),
+    var(--bg);
+}
+
+a {
+  color: var(--accent);
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1.1rem 3rem;
+}
+
+header {
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.35rem;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.15;
+  margin: 0 0 0.4rem;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+}
+
+.badge.demo {
+  border-color: #f0c9a0;
+  color: var(--warn);
+  background: #fff7ed;
+}
+
+.grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.product {
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.05rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.product h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--accent-dark);
+  font-size: 1.05rem;
+}
+
+.desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+button,
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+button:hover,
+.btn:hover {
+  background: var(--accent-dark);
+}
+
+button.secondary,
+.btn.secondary {
+  background: transparent;
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+dialog {
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 0;
+  width: min(420px, 94vw);
+  box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+  background: rgba(28, 25, 20, 0.45);
+}
+
+.dialog-body {
+  padding: 1.15rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dialog-body h3 {
+  margin: 0;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+input,
+textarea {
+  font: inherit;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.panel h2 {
+  margin: 0;
+}
+
+.status-paid {
+  color: var(--ok);
+  font-weight: 700;
+}
+
+.status-pending {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.error {
+  color: var(--warn);
+  font-size: 0.9rem;
+}
