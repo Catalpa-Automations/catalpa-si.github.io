@@ -97,8 +97,20 @@ See `.env.example`.
 
 ## Repo / Catalpa-Automations
 
-Intended home: **https://github.com/Catalpa-Automations** (new repo OK).  
-If this environment has no org push credentials, keep the store path above and grant `GH_TOKEN` / `gh auth` with `repo` scope on that org to publish.
+Intended home: **https://github.com/Catalpa-Automations/job-pack-funnel** (new repo OK).
+
+### Push to Catalpa-Automations (when you have org access)
+
+```bash
+cd /cursor/stores/self/internal/builds/job-pack-funnel
+git init
+git add .
+git commit -m "Initial JobPack GH funnel — Paystack MoMo + WhatsApp delivery"
+gh repo create Catalpa-Automations/job-pack-funnel --private --source=. --remote=origin --push
+# or: git remote add origin git@github.com:Catalpa-Automations/job-pack-funnel.git && git push -u origin main
+```
+
+This agent environment had **no** `GH_TOKEN` / `gh auth` / SSH — cannot create the org repo from here. Unblock with a PAT that has `repo` + org create on Catalpa-Automations.
 
 ## License
 
