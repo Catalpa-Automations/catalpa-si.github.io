@@ -1,7 +1,6 @@
 # Catalpa Automations — Handoff & Exit
 
-> **Have a Ghana lawyer review before use.**  
-> Fair exit rules: Client keeps their data; Catalpa keeps platform IP. **Not** formal legal advice. **No hostage tactics.**
+Fair exit rules: Client keeps their data; Catalpa keeps platform IP. **No hostage tactics.** Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 
 ---
 
@@ -19,7 +18,7 @@ When the relationship ends — after pilot or after paid service:
 
 - Client must be able to **leave with their customer and order data**.  
 - Catalpa must be able to **keep its bot software, platform, and templates**.  
-- Nobody holds the other’s property to force a payment fight. Money disputes are handled with invoices, reminders, and (if needed) proper legal channels — **not** by deleting Client’s only copy of their buyers list or by Client copying Catalpa’s source.
+- Nobody holds the other’s property to force a payment fight. Money disputes are handled with invoices, reminders, and the written agreement — **not** by deleting Client’s only copy of their buyers list or by Client copying Catalpa’s source.
 
 ---
 

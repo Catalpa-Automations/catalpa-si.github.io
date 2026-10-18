@@ -1,7 +1,6 @@
 # Catalpa Automations — Pilot Agreement (Live Proof)
 
-> **Have a Ghana lawyer review before use.**  
-> Plain-language pilot terms for Ghana SMEs. **Not** formal legal advice.
+Plain-language pilot form for Ghana SMEs. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 
 ---
 

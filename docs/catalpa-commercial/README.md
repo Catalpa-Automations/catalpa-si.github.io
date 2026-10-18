@@ -1,7 +1,6 @@
 # Catalpa Automations — Commercial Pack (Solution-First)
 
-> **Have a Ghana lawyer review before use.**  
-> These are plain-language business templates for Accra / Kumasi SMEs. They are **not** formal legal advice and do **not** replace a solicitor’s review under Ghana law.
+Short forms for signing (pilot, order form, scope, exit). **One Terms doc governs** all pilots and paid plans: [`docs/catalpa-terms.md`](../catalpa-terms.md).
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Owner:** Samuel · Catalpa Automations (Ghana)  
 **GitHub:** [https://github.com/Catalpa-Automations](https://github.com/Catalpa-Automations)  
-**Status:** Operating framework (living doc) · **Not legal advice** — have a Ghana lawyer review any client contract before use.
+**Status:** Operating framework (living doc) · Client rules: [`docs/catalpa-terms.md`](./catalpa-terms.md)
 
 ---
 
@@ -51,6 +51,8 @@ Meta Ads (CTWA)
 
 **Product rule:** Screenshot “I paid” is never proof. Only Paystack `charge.success` (or equivalent PSP webhook) moves an order to PAID.
 
+**Selling ads:** Every product gets one ≤78s end-to-end video — see [`docs/catalpa-ad-videos.md`](./catalpa-ad-videos.md).
+
 ---
 
 ## 3. Tech spine
@@ -76,7 +78,7 @@ Meta Ads (CTWA)
 
 **Solution-first:** No upfront fee **for development**. Client pays only after they see their bot/solution **live and working**. Terms must be simple, fair, and protect both sides — Catalpa must not bleed unpaid forever; clients must not feel trapped or litigious.
 
-> This section is an **operating commercial policy**, not a lawyer-drafted contract. A Ghana lawyer should review templates in §5 before client use.
+> Operating commercial policy. Client-facing rules live in **Terms and Conditions** ([`docs/catalpa-terms.md`](./catalpa-terms.md)); short forms are for signing.
 
 ### Stages
 
@@ -132,14 +134,13 @@ Payment starts when **any** of these is true (whichever first, as written on the
 | Scope creep | Change requests → written addendum + fee or new pilot |
 | Ads spend disputes | Client owns ad account; Catalpa never runs personal cards for client spend |
 | Data / number hostage | Client owns WABA number + customer data export; Catalpa keeps platform IP |
-| Litigation optics | Plain language; Ghana lawyer review; keep chat trail of agreements |
+| Litigation optics | Plain language; Terms + written agreement; keep chat trail of agreements |
 
 ---
 
 ## 5. Plain-language templates
 
-**Disclaimer (put on every template header):**  
-*This is a practical working template for Catalpa Automations, not formal legal advice. Have a Ghana lawyer review before signing with clients.*
+**Client forms are short; full rules live in Catalpa Terms and Conditions (`docs/catalpa-terms.md`).**
 
 ### 5A — Pilot Agreement (outline)
 
@@ -156,7 +157,7 @@ Payment starts when **any** of these is true (whichever first, as written on the
 11. **IP** — Catalpa platform/code stays Catalpa; client content/branding stays client (see 5C)  
 12. **Data** — Pilot data handled for demo only; delete or export on request at pilot end  
 13. **Not an employment / partnership** — Independent services  
-14. **Governing note** — Disputes: good-faith WA/call first; Ghana law; lawyer-reviewed final text preferred  
+14. **Governing note** — Disputes: good-faith WA/call first; Ghana law; Terms and Conditions apply  
 
 **Signature block:** Name, role, date, WhatsApp confirmation acceptable if both parties reply “AGREED” to the full text.
 
@@ -173,7 +174,7 @@ Payment starts when **any** of these is true (whichever first, as written on the
 9. **Term** — Month-to-month **or** ___ months; notice period for cancel (default 14 days)  
 10. **Suspension** — Non-payment after ___ days → bot pause (with notice)  
 11. **IP & data** — Same as 5C  
-12. **Limitation** — Catalpa not liable for Meta/Paystack outages, ad performance, or client staff misuse; liability capped at fees paid in prior 3 months *(lawyer to confirm)*  
+12. **Limitation** — Catalpa not liable for Meta/Paystack outages, ad performance, or client staff misuse; liability capped at fees paid in prior 3 months (as in Terms)  
 13. **Signatures**
 
 ### 5C — Cancellation & IP notes (plain language)
@@ -244,9 +245,9 @@ Use before every pilot and every go-live.
 | 5 | **Refunds** | Pilot free (no refund concept); paid periods non-refundable once started except material uncured failure |
 | 6 | **Number / hostage fears** | Client owns WABA; Catalpa can disconnect *platform* only |
 | 7 | **Payment proof** | Webhook only; documented in dashboard |
-| 8 | **Uptime / Meta outage** | Best-effort; disclaimer that Meta/Paystack downtime is outside Catalpa control |
+| 8 | **Uptime / Meta outage** | Best-effort; Terms say Meta/Paystack downtime is outside Catalpa control |
 | 9 | **Staff misuse** | Client responsible for staff logins and wrong prices they set |
-| 10 | **Lawyer gate** | Any deal > significant GHS or multi-site → lawyer-reviewed contract, not template alone |
+| 10 | **Written deal** | Any deal > significant GHS or multi-site → Terms + signed Live Commitment / written agreement |
 | 11 | **Chat evidence** | Keep Pilot + Order Form text + “AGREED” replies |
 | 12 | **Tax / invoices** | Issue proper invoices; don’t mix ad spend with software fees on one vague line |
 
@@ -271,5 +272,6 @@ Use before every pilot and every go-live.
 
 ## Related
 
+- Terms and Conditions: [`docs/catalpa-terms.md`](./catalpa-terms.md)
 - Portfolio ranking & platform rule: [`docs/ghana-money-portfolio.md`](./ghana-money-portfolio.md)
 - Solution-first principle: [`principles/catalpa-solution-first.md`](../principles/catalpa-solution-first.md)

@@ -1,7 +1,6 @@
 # Catalpa Automations — Live Commitment (Order Form)
 
-> **Have a Ghana lawyer review before use.**  
-> Plain-language order form after live proof. **Not** formal legal advice.
+Plain-language order form after live proof. Full rules: **Terms and Conditions** (`docs/catalpa-terms.md`).
 
 ---
 
@@ -126,7 +125,7 @@ No silent extras. No “we added it, please pay.”
 - Catalpa will not invent fees not listed here or in an accepted change quote.  
 - Client will not resell Catalpa’s platform or copy flows to undercut Catalpa with Catalpa’s own code.  
 - Neither side promises Meta ad ROAS.  
-- Ghana lawyer review recommended for high-value or multi-year deals.
+- High-value or multi-year deals: use Terms + this written agreement.
 
 ---
 
